@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Revolutionary AI-powered rainwater harvesting with 8 programming languages and 3D filtration visualization.">
-  <title>AquaHarvest | Next-Generation Water Intelligence</title>
+  <meta name="description"
+    content="Revolutionary AI-powered rainwater harvesting with 8 programming languages and 3D filtration visualization.">
+  <title>AquaHarvest Pro | Next-Generation Water Intelligence</title>
 
   <style>
+    /**
+     * AquaHarvest Pro Ultimate - CSS Stylesheet
+     * Enterprise-grade water harvesting platform
+     * 
+     * Design System:
+     * - Color Scheme: Blue, Cyan, Purple, Green
+     * - Typography: SF Pro Display (system fonts)
+     * - Layout: CSS Grid & Flexbox
+     * - Animations: 60fps optimized
+     * - Responsive: Mobile-first approach
+     * 
+     * Created by: Rishabh Raj Singh & Dev Pratap Singh
+     * © 2026 AquaHarvest. All Rights Reserved.
+     */
+
+    /* ============================================================
+       1. RESET & BASE STYLES
+       ============================================================ */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* CSS Custom Properties (Variables) */
     :root {
       --blue: #0071e3;
       --blue-dark: #0058b0;
@@ -46,9 +67,21 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    button, a { font: inherit; }
-    a { color: inherit; text-decoration: none; }
-    img, svg { display: block; max-width: 100%; }
+    button,
+    a {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
 
     .container {
       width: min(1200px, calc(100% - 40px));
@@ -66,11 +99,20 @@
     }
 
     @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
     }
 
-    /* Navigation */
+    /* ============================================================
+       3. NAVIGATION - Header & Navigation Styles
+       ============================================================ */
     .site-header {
       position: fixed;
       z-index: 1000;
@@ -123,8 +165,15 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
     }
 
     .nav-links {
@@ -136,7 +185,7 @@
     }
 
     .nav-links a {
-      color: var(--muted);
+      color: #fff;
       transition: all 0.3s ease;
       position: relative;
     }
@@ -160,6 +209,10 @@
       width: 100%;
     }
 
+    #muted {
+      color: var(--muted);
+    }
+
     .nav-cta {
       padding: 12px 28px;
       border-radius: 999px;
@@ -174,7 +227,11 @@
       box-shadow: 0 10px 32px rgba(0, 113, 227, 0.4);
     }
 
-    /* Particles Background */
+    /* ============================================================
+       2. LAYOUT & COMPONENTS
+       ============================================================ */
+
+    /* Particles Background - Animated floating particles */
     .particles {
       position: fixed;
       top: 0;
@@ -195,13 +252,28 @@
     }
 
     @keyframes drift {
-      0% { transform: translateY(0) translateX(0); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
     }
 
-    /* Hero Section */
+    /* ============================================================
+       4. HERO SECTION - Main Landing Section
+       ============================================================ */
     .hero {
       position: relative;
       display: grid;
@@ -253,8 +325,15 @@
     }
 
     @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero h1 {
@@ -267,8 +346,15 @@
     }
 
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-copy {
@@ -368,14 +454,35 @@
       filter: blur(0px);
     }
 
-    .water-drop:nth-child(1) { left: 15%; animation-delay: 0s; }
-    .water-drop:nth-child(2) { left: 45%; animation-delay: 1.1s; }
-    .water-drop:nth-child(3) { left: 75%; animation-delay: 2.2s; }
+    .water-drop:nth-child(1) {
+      left: 15%;
+      animation-delay: 0s;
+    }
+
+    .water-drop:nth-child(2) {
+      left: 45%;
+      animation-delay: 1.1s;
+    }
+
+    .water-drop:nth-child(3) {
+      left: 75%;
+      animation-delay: 2.2s;
+    }
 
     @keyframes dropFall {
-      0% { transform: translateY(-120px) scale(1); opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateY(350px) scale(0.8); opacity: 0; }
+      0% {
+        transform: translateY(-120px) scale(1);
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(350px) scale(0.8);
+        opacity: 0;
+      }
     }
 
     /* Section Styles */
@@ -415,11 +522,13 @@
       color: #a1a1a6;
     }
 
-    /* Code Showcase */
+    /* ============================================================
+       5. CODE SHOWCASE - Programming Languages Display
+       ============================================================ */
     .code-showcase {
-      background: linear-gradient(135deg, 
-        radial-gradient(circle at 20% 50%, rgba(0, 113, 227, 0.08), transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.08), transparent 50%));
+      background: linear-gradient(135deg,
+          radial-gradient(circle at 20% 50%, rgba(0, 113, 227, 0.08), transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.08), transparent 50%));
     }
 
     .code-grid {
@@ -482,14 +591,38 @@
       flex-shrink: 0;
     }
 
-    .python .lang-icon { background: linear-gradient(135deg, #3776ab, #ffd43b); color: #000; }
-    .java .lang-icon { background: linear-gradient(135deg, #ec2025, #f18817); }
-    .cpp .lang-icon { background: linear-gradient(135deg, #00599c, #004482); }
-    .csharp .lang-icon { background: linear-gradient(135deg, #239120, #68217a); }
-    .c .lang-icon { background: linear-gradient(135deg, #a8b9cc, #555555); }
-    .rust .lang-icon { background: linear-gradient(135deg, #ce422b, #ff6341); }
-    .go .lang-icon { background: linear-gradient(135deg, #00add8, #0e7c86); }
-    .kotlin .lang-icon { background: linear-gradient(135deg, #7f52ff, #b125ea); }
+    .python .lang-icon {
+      background: linear-gradient(135deg, #3776ab, #ffd43b);
+      color: #000;
+    }
+
+    .java .lang-icon {
+      background: linear-gradient(135deg, #ec2025, #f18817);
+    }
+
+    .cpp .lang-icon {
+      background: linear-gradient(135deg, #00599c, #004482);
+    }
+
+    .csharp .lang-icon {
+      background: linear-gradient(135deg, #239120, #68217a);
+    }
+
+    .c .lang-icon {
+      background: linear-gradient(135deg, #a8b9cc, #555555);
+    }
+
+    .rust .lang-icon {
+      background: linear-gradient(135deg, #ce422b, #ff6341);
+    }
+
+    .go .lang-icon {
+      background: linear-gradient(135deg, #00add8, #0e7c86);
+    }
+
+    .kotlin .lang-icon {
+      background: linear-gradient(135deg, #7f52ff, #b125ea);
+    }
 
     .lang-name {
       font-size: 17px;
@@ -515,7 +648,9 @@
       white-space: pre;
     }
 
-    /* Filtration System */
+    /* ============================================================
+       6. FILTRATION SYSTEM - 3D Water Filter Visualization
+       ============================================================ */
     .filter-section {
       background: linear-gradient(135deg, var(--surface) 0%, #fafbff 100%);
       position: relative;
@@ -623,7 +758,7 @@
       border-radius: 28px;
       background: linear-gradient(135deg, #fff, #f9fbfd);
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12),
-                  inset 0 0 30px rgba(0, 0, 0, 0.05);
+        inset 0 0 30px rgba(0, 0, 0, 0.05);
       transform-style: preserve-3d;
     }
 
@@ -641,13 +776,28 @@
     }
 
     @keyframes slideInLayer {
-      from { opacity: 0; transform: translateX(-30px) rotateY(-30deg); }
-      to { opacity: 1; transform: translateX(0) rotateY(0); }
+      from {
+        opacity: 0;
+        transform: translateX(-30px) rotateY(-30deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0) rotateY(0);
+      }
     }
 
-    .layer:nth-child(1) { animation-delay: 0.1s; }
-    .layer:nth-child(2) { animation-delay: 0.2s; }
-    .layer:nth-child(3) { animation-delay: 0.3s; }
+    .layer:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .layer:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .layer:nth-child(3) {
+      animation-delay: 0.3s;
+    }
 
     .layer-pebbles {
       background: linear-gradient(135deg, #9ca3af, #6b7280);
@@ -684,11 +834,20 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.02); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+      }
     }
 
-    /* Statistics */
+    /* ============================================================
+       7. STATISTICS - Impact Metrics Display
+       ============================================================ */
     .stats-section {
       background: #fff;
     }
@@ -754,7 +913,9 @@
       font-weight: 500;
     }
 
-    /* Calculator */
+    /* ============================================================
+       9. CALCULATOR - Water Collection Estimator
+       ============================================================ */
     .calculator-section {
       background: linear-gradient(135deg, var(--dark-bg), #151b34);
       position: relative;
@@ -915,7 +1076,9 @@
       z-index: 1;
     }
 
-    /* Features Section */
+    /* ============================================================
+       8. FEATURES - Platform Benefits & Highlights
+       ============================================================ */
     .features-section {
       background: #fff;
     }
@@ -964,37 +1127,199 @@
 
     /* Footer */
     footer {
-      padding: 80px 0 40px;
-      background: #000;
+      padding: 100px 0 0;
+      background: linear-gradient(180deg, #000 0%, #1a1a1f 100%);
       color: #a1a1a6;
       text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 2px solid rgba(0, 113, 227, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.5), transparent);
     }
 
     .footer-content {
-      margin-bottom: 32px;
+      padding: 60px 0;
+      margin-bottom: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .footer-text {
-      font-size: 15px;
+      font-size: 16px;
       line-height: 2;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .footer-text strong {
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
     }
 
     .footer-divider {
       width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      margin-top: 40px;
-      margin-bottom: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.4), transparent);
+      margin: 40px 0;
     }
 
     .footer-bottom {
+      font-size: 14px;
+      color: #6e6e73;
+      padding: 20px 0;
+    }
+
+    /* Sub Footer */
+    .sub-footer {
+      padding: 50px 0 30px;
+      background: linear-gradient(180deg, #1a1a1f 0%, #0a0a0f 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .sub-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3), transparent);
+    }
+
+    .creators-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .creator-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 320px;
+    }
+
+    .creator-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(0, 113, 227, 0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 113, 227, 0.15);
+    }
+
+    .creator-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .creator-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .creator-role {
+      font-size: 13px;
+      color: #45c8f5;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .creator-desc {
+      font-size: 14px;
+      color: #a1a1a6;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .sub-footer-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      margin: 40px 0;
+    }
+
+    .sub-footer-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 20px 0;
       font-size: 13px;
       color: #6e6e73;
     }
 
-    /* Responsive */
+    .sub-footer-bottom a {
+      color: #a1a1a6;
+      transition: color 0.3s ease;
+    }
+
+    .sub-footer-bottom a:hover {
+      color: var(--blue);
+    }
+
+    .footer-tech {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 20px 0;
+      font-size: 12px;
+      color: #6e6e73;
+    }
+
+    .tech-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      color: #a1a1a6;
+    }
+
+    .tech-badge:hover {
+      background: rgba(0, 113, 227, 0.1);
+      border-color: rgba(0, 113, 227, 0.3);
+      color: #45c8f5;
+    }
+
+    /* ============================================================
+       10. FOOTER - Main Footer Section
+       ============================================================ */
+    /* (Footer CSS already above) */
+
+    /* ============================================================
+       11. RESPONSIVE DESIGN - Mobile-First Approach
+       ============================================================ */
     @media (max-width: 1100px) {
       .nav-links a:not(.nav-cta) {
         display: none;
@@ -1050,10 +1375,10 @@
       </a>
 
       <div class="nav-links">
-        <a href="#code">Code</a>
-        <a href="#filter">Filter</a>
-        <a href="#features">Features</a>
-        <a href="#calculator">Calculator</a>
+        <a href="#code" id="muted">Code</a>
+        <a href="#filter" id="muted">Filter</a>
+        <a href="#features" id="muted">Features</a>
+        <a href="#calculator" id="muted">Calculator</a>
         <a class="nav-cta" href="#contact">Get Started</a>
       </div>
     </nav>
@@ -1065,8 +1390,9 @@
       <div class="hero-content container">
         <p class="hero-label">🌊 Next-Generation Water Intelligence</p>
         <h1>Harvest Water With <span class="gradient-text">AI-Powered Code</span></h1>
-        <p class="hero-copy">Revolutionary rainwater harvesting system visualized through 8 programming languages and advanced 3D filtration technology.</p>
-        
+        <p class="hero-copy">Revolutionary rainwater harvesting system visualized through 8 programming languages and
+          advanced 3D filtration technology.</p>
+
         <div class="hero-actions">
           <a href="#code" class="button">Explore Code Universe →</a>
           <a href="#calculator" class="button secondary">Calculate Now</a>
@@ -1272,7 +1598,8 @@ val pure = filter.purify(rainfall)</code></div>
         <div class="filter-container">
           <div class="filter-info">
             <h2>3D <span class="gradient-text">Filtration System</span></h2>
-            <p>Advanced three-layer purification removes 99.8% of all contaminants through progressive filtration stages.</p>
+            <p>Advanced three-layer purification removes 99.8% of all contaminants through progressive filtration
+              stages.</p>
 
             <div class="filter-list">
               <div class="filter-item">
@@ -1398,7 +1725,8 @@ val pure = filter.purify(rainfall)</code></div>
         <div class="calculator-panel">
           <div>
             <h2 class="calc-title">Smart Water Calculator</h2>
-            <p class="calc-description">Adjust the sliders below to calculate how much rainwater your roof can collect. Real-time results update instantly.</p>
+            <p class="calc-description">Adjust the sliders below to calculate how much rainwater your roof can collect.
+              Real-time results update instantly.</p>
 
             <div class="calc-controls">
               <div class="calc-control">
@@ -1446,29 +1774,143 @@ val pure = filter.purify(rainfall)</code></div>
     </div>
   </footer>
 
+  <!-- SUB FOOTER WITH CREATORS -->
+  <div class="sub-footer" id="creators">
+    <div class="container">
+      <h3 style="text-align: center; font-size: 28px; font-weight: 900; margin-bottom: 50px; letter-spacing: -0.02em;">
+        <span class="gradient-text">Crafted By Visionaries</span>
+      </h3>
+
+      <!-- Creators Section -->
+      <div class="creators-section">
+        <!-- Creator 1 -->
+        <div class="creator-card">
+          <span class="creator-icon">💻</span>
+          <div class="creator-name">Rishabh Raj Singh</div>
+          <div class="creator-role">Lead Developer & Designer</div>
+          <div class="creator-desc">
+            Full-stack innovator specializing in advanced web technologies, responsive design, and performance
+            optimization. Passionate about creating exceptional digital experiences.
+          </div>
+        </div>
+
+        <!-- Creator 2 -->
+        <div class="creator-card">
+          <span class="creator-icon">🎨</span>
+          <div class="creator-name">Dev Pratap Singh</div>
+          <div class="creator-role">Creative Architect & Engineer</div>
+          <div class="creator-desc">
+            Expert in sustainable technology solutions and environmental applications. Dedicated to merging innovation
+            with real-world impact and creating meaningful solutions.
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-footer-divider"></div>
+
+      <!-- Tech Stack -->
+      <div style="text-align: center; margin-bottom: 30px;">
+        <p style="font-size: 14px; color: #a1a1a6; margin-bottom: 16px; font-weight: 600;">Built With Modern
+          Technologies</p>
+        <div class="footer-tech">
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">Advanced CSS3</span>
+          <span class="tech-badge">Vanilla JavaScript</span>
+          <span class="tech-badge">Responsive Design</span>
+          <span class="tech-badge">Web Performance</span>
+          <span class="tech-badge">Accessibility</span>
+          <span class="tech-badge">3D Transforms</span>
+          <span class="tech-badge">Particle Systems</span>
+        </div>
+      </div>
+
+      <div class="sub-footer-divider"></div>
+
+      <!-- Footer Links & Credits -->
+      <div class="sub-footer-bottom">
+        <span>🌊 AquaHarvest 2026</span>
+        <span>•</span>
+        <a href="#home">Home</a>
+        <span>•</span>
+        <a href="#code">Code</a>
+        <span>•</span>
+        <a href="#filter">Filter</a>
+        <span>•</span>
+        <a href="#calculator">Calculator</a>
+        <span>•</span>
+        <span>Designed with ♥ for Excellence</span>
+      </div>
+
+      <!-- Final Credit Line -->
+      <div
+        style="text-align: center; padding: 20px 0; margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+        <p style="font-size: 12px; color: #6e6e73; font-weight: 500; letter-spacing: 0.05em;">
+          AQUAHARVEST PRO ULTIMATE © 2026 | Created by Rishabh Raj Singh & Dev Pratap Singh | Enterprise-Grade Water
+          Conservation Platform
+        </p>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Particle Generation
+    /**
+     * AquaHarvest Pro Ultimate - JavaScript Enhancement
+     * Enhanced interactive features and animations
+     */
+
+    // ============================================================
+    // 1. PARTICLE SYSTEM - Background Animation
+    // ============================================================
+    /**
+     * Generates 30 animated particles for visual depth
+     * Each particle has random position and animation timing
+     */
     function generateParticles() {
       const container = document.getElementById('particles');
-      for (let i = 0; i < 30; i++) {
+      const particleCount = 30;
+
+      for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
+
+        // Random positioning across viewport
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
+
+        // Varied animation duration for natural look (20-40 seconds)
         particle.style.animationDuration = (Math.random() * 20 + 20) + 's';
+
+        // Staggered animation start for continuous motion
         particle.style.animationDelay = Math.random() * 5 + 's';
+
         container.appendChild(particle);
       }
     }
     generateParticles();
 
-    // Header Scroll Effect
+    // ============================================================
+    // 2. NAVIGATION - Header Scroll Effect
+    // ============================================================
+    /**
+     * Adds visual feedback when user scrolls page
+     * Changes header styling at 50px scroll threshold
+     */
     const header = document.getElementById('header');
+    let lastScrollY = 0;
+
     window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 50);
+      lastScrollY = window.scrollY;
+      header.classList.toggle('scrolled', lastScrollY > 50);
     });
 
-    // Calculator Functionality
+    // ============================================================
+    // 3. CALCULATOR - Water Collection Calculator
+    // ============================================================
+    /**
+     * Real-time water collection calculation
+     * Formula: Roof Area × Rainfall × Efficiency × 12 (annual)
+     * Updates live as user adjusts sliders
+     */
     const roofArea = document.getElementById('roofArea');
     const rainfall = document.getElementById('rainfall');
     const efficiency = document.getElementById('efficiency');
@@ -1477,45 +1919,129 @@ val pure = filter.purify(rainfall)</code></div>
     const effValue = document.getElementById('effValue');
     const result = document.getElementById('result');
 
+    /**
+     * Calculates water collection based on inputs
+     * Assumes 12 rainfall events per year for annual estimate
+     */
     function calculate() {
       const area = parseFloat(roofArea.value);
       const rain = parseFloat(rainfall.value);
       const eff = parseFloat(efficiency.value) / 100;
-      
-      // Formula: area × rainfall × efficiency = litres per rainfall event
-      // For annual estimate, multiply by 12 (average rainfalls per year)
+
+      // Formula breakdown:
+      // area (m²) × rainfall (mm) × efficiency (0-1) = litres per event
+      // × 12 = annual average collection
       const collection = Math.round(area * rain * eff * 12);
-      
+
+      // Update display values
       result.textContent = collection.toLocaleString();
       areaValue.textContent = area;
       rainValue.textContent = rain;
       effValue.textContent = efficiency.value + '%';
     }
 
+    // Attach event listeners to all calculator inputs
     roofArea.addEventListener('input', calculate);
     rainfall.addEventListener('input', calculate);
     efficiency.addEventListener('input', calculate);
 
+    // Initial calculation on page load
     calculate();
 
-    // Code Block Glow Effect
+    // ============================================================
+    // 4. ANIMATIONS - Code Block Glow Effect
+    // ============================================================
+    /**
+     * Adds glow animation to code blocks on hover
+     * Creates premium interactive feeling
+     */
     document.querySelectorAll('.code-block').forEach(block => {
-      block.addEventListener('mouseenter', function() {
+      block.addEventListener('mouseenter', function () {
+        // Reset animation for hover effect
         this.style.animation = 'none';
+
+        // Trigger reflow to restart animation
         setTimeout(() => this.style.animation = '', 10);
       });
     });
 
-    // Smooth Scroll Links
+    // ============================================================
+    // 5. NAVIGATION - Smooth Scroll for Anchor Links
+    // ============================================================
+    /**
+     * Enables smooth scrolling for all anchor links
+     * Prevents default jump behavior
+     */
     document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function(e) {
+      link.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+
         if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
+          // Smooth scroll to target with offset
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+
+          // Update URL without page jump
+          window.history.pushState(null, null, targetId);
         }
       });
     });
+
+    // ============================================================
+    // 6. PERFORMANCE - Lazy Loading Preparation
+    // ============================================================
+    /**
+     * Observes elements for visibility
+     * Can be extended for lazy loading images/content
+     */
+    if ('IntersectionObserver' in window) {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '50px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('loaded');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all animated elements
+      document.querySelectorAll('[class*="reveal"], [class*="card"]')
+        .forEach(el => observer.observe(el));
+    }
+
+    // ============================================================
+    // 7. UTILITIES - Console Welcome Message
+    // ============================================================
+    /**
+     * Welcome message in browser console
+     * Shows version and creator information
+     */
+    console.log(
+      '%cAquaHarvest Pro Ultimate',
+      'font-size: 24px; font-weight: bold; color: #0071e3;'
+    );
+    console.log(
+      '%cCreated by: Rishabh Raj Singh & Dev Pratap Singh',
+      'font-size: 14px; color: #45c8f5;'
+    );
+    console.log(
+      '%cEnterprise-Grade Water Harvesting Platform',
+      'font-size: 12px; color: #a1a1a6;'
+    );
+    console.log(
+      '%c© 2026 AquaHarvest | All Rights Reserved',
+      'font-size: 11px; color: #6e6e73;'
+    );
   </script>
 </body>
+
 </html>
