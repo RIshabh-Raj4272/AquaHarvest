@@ -356,16 +356,16 @@
       position: absolute;
     }
 
-    .nav.open.nav-toggle span {
+    .nav.open .nav-toggle span {
       background: transparent;
     }
 
-    .nav.open.nav-toggle span::before {
+    .nav.open .nav-toggle span::before {
       transform: rotate(45deg);
       top: 0;
     }
 
-    .nav.open.nav-toggle span::after {
+    .nav.open .nav-toggle span::after {
       transform: rotate(-45deg);
       top: 0;
     }
@@ -416,27 +416,6 @@
     .hero-inner {
       position: relative;
       z-index: 2
-    }
-
-    .hero-overline {
-      font-family: var(--mono);
-      font-size: clamp(10px, 2.5vw, 12px);
-      letter-spacing: .4em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 34px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .hero-overline::before {
-      content: "";
-      width: 56px;
-      height: 1px;
-      background: var(--cyan);
-      flex-shrink: 0;
     }
 
     .hero h1 {
@@ -2180,7 +2159,7 @@
         transition: .4s cubic-bezier(.4, 0, .2, 1);
       }
 
-      .nav.open.nav-links {
+      .nav.open .nav-links {
         transform: translateY(0);
         opacity: 1;
         pointer-events: auto;
@@ -2432,7 +2411,6 @@
       <div class="hero-glow g1"></div>
       <div class="hero-glow g2"></div>
       <div class="hero-inner container">
-        <p class="hero-overline" id="heroOverline">A National-Level Science Project · UN SDG 6</p>
         <h1 data-testid="hero-title">
           <span class="mask"><span class="mask-inner">Rain,</span></span>
           <span class="mask"><span class="mask-inner"><em>captured.</em></span></span>
