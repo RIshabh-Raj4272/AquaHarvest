@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="description"
     content="AquaHarvest — a national-level science project: low-cost rooftop rainwater harvesting, 3-layer gravity filtration, real algorithms in 8 languages, lab results and ROI analysis.">
   <title>AquaHarvest — Rain, Captured. Water, Engineered.</title>
@@ -35,7 +35,8 @@
     }
 
     html {
-      scroll-behavior: auto
+      scroll-behavior: auto;
+      -webkit-text-size-adjust: 100%;
     }
 
     html.lenis,
@@ -75,12 +76,17 @@
       cursor: pointer
     }
 
+    img,
+    svg {
+      max-width: 100%;
+      display: block;
+    }
+
     .container {
       width: min(1240px, calc(100% - 48px));
       margin-inline: auto
     }
 
-    /* ---------- grain ---------- */
     .grain {
       position: fixed;
       inset: -50%;
@@ -117,7 +123,6 @@
       }
     }
 
-    /* ---------- cursor ---------- */
     .cursor-dot,
     .cursor-ring {
       position: fixed;
@@ -139,7 +144,7 @@
       width: 34px;
       height: 34px;
       border: 1px solid rgba(62, 224, 255, .5);
-      transition: width .25s, height .25s, border-color .25s
+      transition: width.25s, height.25s, border-color.25s
     }
 
     .cursor-ring.is-hover {
@@ -156,7 +161,7 @@
       }
     }
 
-    /* ---------- loader ---------- */
+    /* loader */
     .loader {
       position: fixed;
       inset: 0;
@@ -166,7 +171,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 22px
+      gap: 22px;
+      text-align: center;
+      padding: 20px;
     }
 
     .loader-word {
@@ -206,20 +213,21 @@
       background: linear-gradient(90deg, var(--azure), var(--cyan), var(--aqua))
     }
 
-    /* ---------- nav ---------- */
+    /* nav */
     .nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      transition: background .4s, border-color .4s;
+      transition: background.4s, border-color.4s;
       border-bottom: 1px solid transparent
     }
 
     .nav.scrolled {
-      background: rgba(4, 16, 28, .75);
+      background: rgba(4, 16, 28, .9);
       backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-color: var(--line)
     }
 
@@ -238,7 +246,8 @@
       font-family: var(--mono);
       font-weight: 600;
       font-size: 14px;
-      letter-spacing: .22em
+      letter-spacing: .22em;
+      z-index: 1002;
     }
 
     .brand-mark {
@@ -269,7 +278,7 @@
     .nav-links a {
       color: var(--mist);
       position: relative;
-      transition: color .3s;
+      transition: color.3s;
       padding: 6px 0
     }
 
@@ -281,7 +290,7 @@
       height: 1px;
       width: 0;
       background: var(--cyan);
-      transition: width .3s
+      transition: width.3s
     }
 
     .nav-links a:hover {
@@ -292,7 +301,7 @@
       width: 100%
     }
 
-    .nav-links a .n {
+    .nav-links a.n {
       color: var(--cyan);
       margin-right: 6px
     }
@@ -302,7 +311,7 @@
       border: 1px solid var(--cyan);
       border-radius: 999px;
       color: var(--cyan) !important;
-      transition: background .3s, color .3s
+      transition: background.3s, color.3s
     }
 
     .nav-cta:hover {
@@ -314,20 +323,62 @@
       display: none
     }
 
-    @media (max-width:1080px) {
-      .nav-links a:not(.nav-cta) {
-        display: none
-      }
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      align-items: center;
+      justify-content: center;
+      z-index: 1002;
     }
 
-    /* ---------- hero ---------- */
+    .nav-toggle span,
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--foam);
+      transition: .3s;
+      position: relative;
+    }
+
+    .nav-toggle span::before {
+      top: -6px;
+      position: absolute;
+    }
+
+    .nav-toggle span::after {
+      top: 6px;
+      position: absolute;
+    }
+
+    .nav.open.nav-toggle span {
+      background: transparent;
+    }
+
+    .nav.open.nav-toggle span::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    .nav.open.nav-toggle span::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+
+    /* hero */
     .hero {
       position: relative;
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 150px 0 90px;
+      padding: 120px 0 90px;
       overflow: hidden
     }
 
@@ -369,41 +420,44 @@
 
     .hero-overline {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: clamp(10px, 2.5vw, 12px);
       letter-spacing: .4em;
       text-transform: uppercase;
       color: var(--cyan);
       margin-bottom: 34px;
       display: flex;
       align-items: center;
-      gap: 16px
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .hero-overline::before {
       content: "";
       width: 56px;
       height: 1px;
-      background: var(--cyan)
+      background: var(--cyan);
+      flex-shrink: 0;
     }
 
     .hero h1 {
       font-family: var(--serif);
       font-weight: 900;
       font-variation-settings: "opsz" 144;
-      font-size: clamp(58px, 11.5vw, 168px);
+      font-size: clamp(44px, 10vw, 168px);
       line-height: .98;
       letter-spacing: -.035em;
-      text-transform: uppercase
+      text-transform: uppercase;
+      word-break: break-word;
     }
 
-    .hero h1 .mask {
+    .hero h1.mask {
       display: block;
       overflow: hidden;
       padding-bottom: .06em;
       margin-bottom: -.04em
     }
 
-    .hero h1 .mask-inner {
+    .hero h1.mask-inner {
       display: block;
       transform: translateY(115%)
     }
@@ -429,7 +483,7 @@
     .hero-copy {
       max-width: 520px;
       color: var(--mist);
-      font-size: 17px;
+      font-size: clamp(15px, 2.5vw, 17px);
       line-height: 1.8
     }
 
@@ -446,7 +500,7 @@
 
     .chip {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: clamp(10px, 2.2vw, 12px);
       letter-spacing: .06em;
       padding: 10px 18px;
       border: 1px solid var(--line);
@@ -471,14 +525,17 @@
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       padding: 17px 34px;
       border-radius: 999px;
       font-weight: 600;
       font-size: 15px;
       letter-spacing: .02em;
-      transition: transform .35s cubic-bezier(.34, 1.56, .64, 1), box-shadow .35s, background .3s, color .3s;
-      position: relative
+      transition: transform.35s cubic-bezier(.34, 1.56, .64, 1), box-shadow.35s, background.3s, color.3s;
+      position: relative;
+      white-space: nowrap;
+      min-height: 54px;
     }
 
     .btn-primary {
@@ -550,7 +607,7 @@
       }
     }
 
-    /* ---------- marquee ---------- */
+    /* marquee */
     .marquee {
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
@@ -571,7 +628,7 @@
       font-family: var(--serif);
       font-style: italic;
       font-weight: 400;
-      font-size: clamp(22px, 3vw, 34px);
+      font-size: clamp(18px, 3vw, 34px);
       color: var(--mist);
       letter-spacing: -.01em
     }
@@ -588,7 +645,7 @@
       margin-right: 14px
     }
 
-    .marquee-track .dot {
+    .marquee-track.dot {
       color: var(--cyan);
       font-style: normal
     }
@@ -599,7 +656,7 @@
       }
     }
 
-    /* ---------- chapters ---------- */
+    /* chapters */
     .chapter {
       position: relative;
       padding: 130px 0;
@@ -616,7 +673,7 @@
       right: -1%;
       font-family: var(--serif);
       font-weight: 900;
-      font-size: clamp(160px, 26vw, 380px);
+      font-size: clamp(120px, 26vw, 380px);
       line-height: 1;
       color: transparent;
       -webkit-text-stroke: 1px rgba(140, 200, 235, .10);
@@ -640,7 +697,8 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 22px
+      margin-bottom: 22px;
+      flex-wrap: wrap;
     }
 
     .chapter-kicker::before {
@@ -654,9 +712,10 @@
       font-family: var(--serif);
       font-weight: 900;
       font-variation-settings: "opsz" 144;
-      font-size: clamp(40px, 6.4vw, 86px);
+      font-size: clamp(32px, 6vw, 86px);
       line-height: 1.02;
-      letter-spacing: -.03em
+      letter-spacing: -.03em;
+      overflow-wrap: break-word;
     }
 
     .chapter h2 em {
@@ -668,7 +727,7 @@
     .chapter-lede {
       margin-top: 26px;
       color: var(--mist);
-      font-size: 17.5px;
+      font-size: clamp(15px, 2.5vw, 17.5px);
       line-height: 1.85;
       max-width: 680px
     }
@@ -683,7 +742,7 @@
       transform: translateY(44px)
     }
 
-    /* ---------- crisis ---------- */
+    /* crisis */
     .stat-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -697,7 +756,7 @@
       border: 1px solid var(--line);
       border-radius: 26px;
       background: linear-gradient(160deg, rgba(10, 33, 54, .85), rgba(7, 26, 43, .6));
-      transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), border-color .3s
+      transition: transform.4s cubic-bezier(.34, 1.56, .64, 1), border-color.3s
     }
 
     .stat-card:hover {
@@ -712,13 +771,13 @@
     .stat-value {
       font-family: var(--serif);
       font-weight: 900;
-      font-size: clamp(46px, 4.6vw, 64px);
+      font-size: clamp(38px, 4.6vw, 64px);
       line-height: 1;
       letter-spacing: -.02em;
       margin-bottom: 12px
     }
 
-    .stat-value .unit {
+    .stat-value.unit {
       font-size: .42em;
       color: var(--cyan);
       font-family: var(--mono);
@@ -727,7 +786,7 @@
       margin-left: 6px
     }
 
-    .stat-card.alert .stat-value {
+    .stat-card.alert.stat-value {
       color: var(--coral)
     }
 
@@ -766,7 +825,7 @@
     .quote-strip p {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(21px, 2.6vw, 30px);
+      font-size: clamp(18px, 2.6vw, 30px);
       line-height: 1.45;
       color: var(--foam)
     }
@@ -806,36 +865,36 @@
       font-size: 14px
     }
 
-    .gap-row .bar {
+    .gap-row.bar {
       height: 34px;
       border-radius: 8px;
       background: rgba(140, 200, 235, .08);
       overflow: hidden
     }
 
-    .gap-row .bar i {
+    .gap-row.bar i {
       display: block;
       height: 100%;
       width: 0;
       border-radius: 8px
     }
 
-    .gap-row.demand .bar i {
+    .gap-row.demand.bar i {
       background: linear-gradient(90deg, #ff8a5e, var(--coral))
     }
 
-    .gap-row.supply .bar i {
+    .gap-row.supply.bar i {
       background: linear-gradient(90deg, var(--azure), var(--cyan))
     }
 
-    .gap-row .pct {
+    .gap-row.pct {
       font-family: var(--mono);
       font-size: 13px;
       color: var(--mist);
       text-align: right
     }
 
-    /* ---------- method ---------- */
+    /* method */
     .schematic {
       margin: 0 0 80px;
       border: 1px solid var(--line);
@@ -843,11 +902,14 @@
       background: linear-gradient(160deg, rgba(10, 33, 54, .7), rgba(7, 26, 43, .45));
       padding: 46px 30px;
       position: relative;
-      z-index: 2
+      z-index: 2;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .schematic svg {
       width: 100%;
+      min-width: 720px;
       height: auto;
       display: block
     }
@@ -865,7 +927,7 @@
       border: 1px solid var(--line);
       border-radius: 24px;
       background: rgba(10, 33, 54, .55);
-      transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), border-color .3s, background .3s;
+      transition: transform.4s cubic-bezier(.34, 1.56, .64, 1), border-color.3s, background.3s;
       position: relative
     }
 
@@ -914,8 +976,8 @@
       line-height: 1.65
     }
 
-    /* ---------- code ---------- */
-    .code-layout {
+    /* code */
+    ..code-layout {
       display: grid;
       grid-template-columns: 1.5fr 1fr;
       gap: 28px;
@@ -924,43 +986,57 @@
       align-items: start
     }
 
-    @media (max-width:980px) {
-      .code-layout {
-        grid-template-columns: 1fr
-      }
+    .tabs-wrap {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
     }
 
     .lang-tabs {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 8px;
-      margin-bottom: 18px
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 8px;
+      padding-right: 40px;
+    }
+
+    .lang-tabs::-webkit-scrollbar {
+      display: none
+    }
+
+    .tabs-fade {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 8px;
+      width: 50px;
+      background: linear-gradient(90deg, transparent, var(--bg));
+      pointer-events: none;
     }
 
     .lang-tab {
-      font-family: var(--mono);
-      font-size: 12.5px;
-      letter-spacing: .04em;
+      white-space: nowrap;
+      flex-shrink: 0;
       padding: 10px 18px;
       border: 1px solid var(--line);
       border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 12.5px;
       color: var(--mist);
-      transition: all .25s;
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 8px
+      gap: 8px;
+      transition: .25s
     }
 
     .lang-tab .dotty {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: currentColor
-    }
-
-    .lang-tab:hover {
-      color: var(--foam);
-      border-color: rgba(62, 224, 255, .4)
+      display: inline-block
     }
 
     .lang-tab.active {
@@ -1009,48 +1085,51 @@
       margin-left: 12px;
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--mist)
+      color: var(--mist);
     }
 
     .code-meta {
       margin-left: auto;
       font-family: var(--mono);
-      font-size: 10.5px;
+      font-size: 10px;
       letter-spacing: .14em;
       text-transform: uppercase;
       color: rgba(143, 176, 196, .55)
     }
 
-    .code-body {
-      padding: 24px 0;
+    /* scroll wrapper */
+    .code-scroll-wrapper {
       overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .code-scroll-wrapper::-webkit-scrollbar {
+      display: none
+    }
+
+    .code-body {
+      padding: 20px 0;
       font-family: var(--mono);
-      font-size: 13.5px;
-      line-height: 1.9
+      font-size: clamp(11.5px, 1.8vw, 13.5px);
+      line-height: 1.9;
+      min-width: max-content
     }
 
     .code-line {
       display: flex;
       padding: 0 24px;
-      white-space: pre;
-      transition: background .2s
-    }
-
-    .code-line:hover {
-      background: rgba(62, 224, 255, .05)
+      white-space: pre
     }
 
     .code-line .ln {
       width: 34px;
       flex-shrink: 0;
       color: rgba(143, 176, 196, .32);
-      user-select: none;
       text-align: right;
-      margin-right: 22px
-    }
-
-    .code-line .lc {
-      color: #c7e3f4
+      margin-right: 22px;
+      user-select: none
     }
 
     .tok-k {
@@ -1070,43 +1149,91 @@
       font-style: italic
     }
 
-    .code-run {
+    /* NEW SCROLL HANDLE */
+    .code-scroll-track {
+      position: relative;
+      height: 32px;
+      background: rgba(10, 33, 54, .6);
       border-top: 1px solid var(--line);
-      padding: 16px 24px;
-      font-family: var(--mono);
-      font-size: 12.5px;
-      color: var(--aqua);
-      background: rgba(99, 242, 197, .04)
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .code-run .prompt {
-      color: var(--mist)
+    .code-scroll-thumb {
+      position: absolute;
+      left: 12px;
+      height: 6px;
+      background: linear-gradient(90deg, var(--azure), var(--cyan));
+      border-radius: 99px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: height .2s, opacity .2s;
+      box-shadow: 0 2px 12px rgba(62, 224, 255, .4);
+    }
+
+    .code-scroll-thumb:hover,
+    .code-scroll-thumb.dragging {
+      height: 10px;
+    }
+
+    .thumb-inner {
+      width: 20px;
+      height: 2px;
+      background: rgba(4, 16, 28, .6);
+      border-radius: 99px;
+    }
+
+    .code-scroll-track:hover .code-scroll-thumb {
+      opacity: 1
+    }
+
+    .code-run {
+      padding: 14px 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--aqua);
+      background: rgba(99, 242, 197, .04);
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none
+    }
+
+    .code-run::-webkit-scrollbar {
+      display: none
+    }
+
+    .scroll-hint-mobile {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--mist);
+      opacity: .7;
+      margin-top: 10px;
+      text-align: center;
+      display: none
     }
 
     .notes-panel {
       border: 1px solid var(--line);
       border-radius: 22px;
       background: linear-gradient(160deg, rgba(10, 33, 54, .85), rgba(7, 26, 43, .6));
-      padding: 34px 30px;
+      padding: 28px 24px;
       position: sticky;
       top: 100px
-    }
-
-    .notes-panel h3 {
-      font-family: var(--mono);
-      font-size: 11.5px;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 8px
     }
 
     .notes-lang {
       font-family: var(--serif);
       font-weight: 900;
       font-size: 30px;
-      letter-spacing: -.02em;
-      margin-bottom: 20px
+      margin-bottom: 16px
     }
 
     .notes-list {
@@ -1118,7 +1245,7 @@
     .notes-list li {
       display: flex;
       gap: 12px;
-      font-size: 13.8px;
+      font-size: 13.5px;
       color: var(--mist);
       line-height: 1.6
     }
@@ -1141,15 +1268,41 @@
       font-size: 12px;
       color: var(--mist);
       display: flex;
-      justify-content: space-between
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px
     }
 
-    .notes-badge b {
-      color: var(--aqua);
-      font-weight: 500
+    @media(max-width:980px) {
+      .code-layout {
+        grid-template-columns: 1fr
+      }
+
+      .notes-panel {
+        position: relative;
+        top: 0
+      }
+
+      .scroll-hint-mobile {
+        display: block
+      }
     }
 
-    /* ---------- filter ---------- */
+    @media(max-width:600px) {
+      .code-window {
+        border-radius: 16px
+      }
+
+      .code-line {
+        padding: 0 16px
+      }
+
+      .code-meta {
+        display: none
+      }
+    }
+
+    /* filter */
     .filter-layout {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
@@ -1157,13 +1310,6 @@
       align-items: start;
       position: relative;
       z-index: 2
-    }
-
-    @media (max-width:980px) {
-      .filter-layout {
-        grid-template-columns: 1fr;
-        gap: 50px
-      }
     }
 
     .filter-viz {
@@ -1191,7 +1337,7 @@
       overflow: hidden;
       border: 2px solid rgba(140, 200, 235, .22);
       transform: rotateX(6deg);
-      transition: transform .5s;
+      transition: transform.5s;
       box-shadow: 0 40px 80px rgba(0, 0, 0, .5), inset 0 0 40px rgba(0, 0, 0, .4);
       position: relative
     }
@@ -1204,7 +1350,7 @@
       justify-content: center;
       padding: 16px 24px;
       cursor: pointer;
-      transition: filter .3s;
+      transition: filter.3s;
       border: none;
       width: 100%;
       text-align: left;
@@ -1220,20 +1366,20 @@
       outline-offset: -2px
     }
 
-    .f-layer .fl-name {
+    .f-layer.fl-name {
       font-weight: 700;
       font-size: 16px;
       letter-spacing: -.01em
     }
 
-    .f-layer .fl-size {
+    .f-layer.fl-size {
       font-family: var(--mono);
       font-size: 11px;
       opacity: .85;
       margin-top: 3px
     }
 
-    .f-layer .fl-arrow {
+    .f-layer.fl-arrow {
       position: absolute;
       right: 20px;
       top: 50%;
@@ -1289,7 +1435,9 @@
       font-family: var(--mono);
       font-size: 12px;
       color: var(--mist);
-      letter-spacing: .08em
+      letter-spacing: .08em;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .meter-row b {
@@ -1327,7 +1475,7 @@
       text-transform: uppercase;
       color: var(--aqua);
       opacity: 0;
-      transition: opacity .5s
+      transition: opacity.5s
     }
 
     .sim-result.show {
@@ -1354,7 +1502,7 @@
       padding: 40px 36px
     }
 
-    .filter-detail .fd-tag {
+    .filter-detail.fd-tag {
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: .28em;
@@ -1367,7 +1515,7 @@
     .filter-detail h3 {
       font-family: var(--serif);
       font-weight: 900;
-      font-size: 36px;
+      font-size: clamp(26px, 4vw, 36px);
       letter-spacing: -.02em;
       margin-bottom: 18px
     }
@@ -1390,21 +1538,22 @@
       gap: 20px;
       padding: 15px 0;
       border-top: 1px solid var(--line);
-      font-size: 14px
+      font-size: 14px;
+      flex-wrap: wrap;
     }
 
-    .fact-row .k {
+    .fact-row.k {
       color: var(--mist)
     }
 
-    .fact-row .v {
+    .fact-row.v {
       font-family: var(--mono);
       font-size: 13px;
       color: var(--aqua);
       text-align: right
     }
 
-    /* ---------- results ---------- */
+    /* results */
     .table-wrap {
       border: 1px solid var(--line);
       border-radius: 26px;
@@ -1412,13 +1561,16 @@
       position: relative;
       z-index: 2;
       margin-bottom: 70px;
-      background: rgba(5, 15, 26, .6)
+      background: rgba(5, 15, 26, .6);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .lab-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14.5px
+      font-size: 14.5px;
+      min-width: 600px;
     }
 
     .lab-table th {
@@ -1430,7 +1582,8 @@
       text-align: left;
       padding: 18px 26px;
       background: rgba(10, 33, 54, .8);
-      border-bottom: 1px solid var(--line)
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
     }
 
     .lab-table td {
@@ -1446,23 +1599,23 @@
       background: rgba(62, 224, 255, .04)
     }
 
-    .lab-table .param {
+    .lab-table.param {
       font-weight: 600
     }
 
-    .lab-table .before {
+    .lab-table.before {
       color: var(--coral);
       font-family: var(--mono);
       font-size: 13px
     }
 
-    .lab-table .after {
+    .lab-table.after {
       color: var(--aqua);
       font-family: var(--mono);
       font-size: 13px
     }
 
-    .lab-table .delta {
+    .lab-table.delta {
       font-family: var(--mono);
       font-size: 13px;
       color: var(--cyan)
@@ -1474,7 +1627,8 @@
       color: var(--mist);
       font-family: var(--mono);
       border-top: 1px solid var(--line);
-      background: rgba(10, 33, 54, .5)
+      background: rgba(10, 33, 54, .5);
+      min-width: 600px;
     }
 
     .roi-grid {
@@ -1491,7 +1645,7 @@
       border: 1px solid var(--line);
       border-radius: 24px;
       background: linear-gradient(160deg, rgba(10, 33, 54, .85), rgba(7, 26, 43, .55));
-      transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), border-color .3s
+      transition: transform.4s cubic-bezier(.34, 1.56, .64, 1), border-color.3s
     }
 
     .roi-card:hover {
@@ -1499,7 +1653,7 @@
       border-color: rgba(99, 242, 197, .45)
     }
 
-    .roi-card .roi-k {
+    .roi-card.roi-k {
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: .22em;
@@ -1509,7 +1663,7 @@
       display: block
     }
 
-    .roi-card .roi-v {
+    .roi-card.roi-v {
       font-family: var(--serif);
       font-weight: 900;
       font-size: clamp(32px, 3.4vw, 44px);
@@ -1517,7 +1671,7 @@
       line-height: 1
     }
 
-    .roi-card .roi-v span {
+    .roi-card.roi-v span {
       font-size: .45em;
       color: var(--aqua);
       font-family: var(--mono);
@@ -1526,7 +1680,7 @@
       margin-left: 6px
     }
 
-    .roi-card .roi-d {
+    .roi-card.roi-d {
       margin-top: 12px;
       font-size: 13px;
       color: var(--mist);
@@ -1538,7 +1692,7 @@
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.1fr.9fr;
       gap: 60px;
       border: 1px solid var(--line);
       border-radius: 34px;
@@ -1546,18 +1700,10 @@
       padding: 60px
     }
 
-    @media (max-width:980px) {
-      .calc-panel {
-        grid-template-columns: 1fr;
-        padding: 38px 26px;
-        gap: 44px
-      }
-    }
-
     .calc-title {
       font-family: var(--serif);
       font-weight: 900;
-      font-size: clamp(30px, 3.4vw, 44px);
+      font-size: clamp(28px, 3.4vw, 44px);
       letter-spacing: -.02em;
       margin-bottom: 14px
     }
@@ -1589,7 +1735,9 @@
       letter-spacing: .2em;
       text-transform: uppercase;
       color: var(--mist);
-      margin-bottom: 14px
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
     .calc-control label output {
@@ -1609,7 +1757,7 @@
       font-size: 14px;
       outline: none;
       cursor: pointer;
-      transition: border-color .3s
+      transition: border-color.3s
     }
 
     select.city-select:focus {
@@ -1634,7 +1782,7 @@
       background: linear-gradient(135deg, var(--cyan), var(--azure));
       box-shadow: 0 6px 20px rgba(62, 224, 255, .5);
       border: 3px solid #04101c;
-      transition: transform .25s
+      transition: transform.25s
     }
 
     input[type=range]::-webkit-slider-thumb:hover {
@@ -1669,7 +1817,7 @@
       padding: 44px 30px
     }
 
-    .calc-hero-out .lbl {
+    .calc-hero-out.lbl {
       font-family: var(--mono);
       font-size: 11px;
       letter-spacing: .28em;
@@ -1678,15 +1826,16 @@
       margin-bottom: 16px
     }
 
-    .calc-hero-out .big {
+    .calc-hero-out.big {
       font-family: var(--serif);
       font-weight: 900;
-      font-size: clamp(52px, 6vw, 76px);
+      font-size: clamp(42px, 6vw, 76px);
       line-height: 1;
-      letter-spacing: -.03em
+      letter-spacing: -.03em;
+      word-break: break-all;
     }
 
-    .calc-hero-out .unit {
+    .calc-hero-out.unit {
       font-family: var(--mono);
       font-size: 14px;
       color: var(--aqua);
@@ -1708,14 +1857,14 @@
       background: rgba(5, 15, 26, .5)
     }
 
-    .calc-out .v {
+    .calc-out.v {
       font-family: var(--mono);
       font-weight: 600;
       font-size: 19px;
       color: var(--cyan)
     }
 
-    .calc-out .k {
+    .calc-out.k {
       font-family: var(--mono);
       font-size: 10px;
       letter-spacing: .16em;
@@ -1726,7 +1875,7 @@
       line-height: 1.5
     }
 
-    /* ---------- future ---------- */
+    /* future */
     .future-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -1741,7 +1890,7 @@
       border: 1px solid var(--line);
       border-radius: 26px;
       background: rgba(10, 33, 54, .55);
-      transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), border-color .3s;
+      transition: transform.4s cubic-bezier(.34, 1.56, .64, 1), border-color.3s;
       position: relative;
       overflow: hidden
     }
@@ -1755,7 +1904,7 @@
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--cyan), transparent);
       opacity: 0;
-      transition: opacity .3s
+      transition: opacity.3s
     }
 
     .future-card:hover {
@@ -1767,7 +1916,7 @@
       opacity: 1
     }
 
-    .future-card .f-num {
+    .future-card.f-num {
       font-family: var(--mono);
       font-size: 11px;
       color: var(--cyan);
@@ -1802,17 +1951,10 @@
       align-items: center
     }
 
-    @media (max-width:860px) {
-      .conclusion {
-        grid-template-columns: 1fr;
-        padding: 40px 30px
-      }
-    }
-
     .conclusion h3 {
       font-family: var(--serif);
       font-weight: 900;
-      font-size: clamp(28px, 3.4vw, 42px);
+      font-size: clamp(24px, 3.4vw, 42px);
       letter-spacing: -.02em;
       margin-bottom: 18px
     }
@@ -1825,7 +1967,7 @@
 
     .conclusion p {
       color: var(--mist);
-      font-size: 16px;
+      font-size: clamp(14px, 2.5vw, 16px);
       line-height: 1.85;
       max-width: 640px
     }
@@ -1850,7 +1992,7 @@
       flex-shrink: 0
     }
 
-    .sdg-badge .n {
+    .sdg-badge.n {
       font-family: var(--serif);
       font-weight: 900;
       font-size: 52px;
@@ -1858,7 +2000,7 @@
       line-height: 1
     }
 
-    .sdg-badge .t {
+    .sdg-badge.t {
       font-family: var(--mono);
       font-size: 9.5px;
       letter-spacing: .18em;
@@ -1869,7 +2011,7 @@
       padding: 0 12px
     }
 
-    /* ---------- footer ---------- */
+    /* footer */
     footer {
       border-top: 1px solid var(--line);
       background: #02090f;
@@ -1881,7 +2023,7 @@
     .foot-title {
       font-family: var(--serif);
       font-weight: 900;
-      font-size: clamp(40px, 7vw, 100px);
+      font-size: clamp(36px, 7vw, 100px);
       letter-spacing: -.03em;
       line-height: 1;
       text-align: center;
@@ -1900,15 +2042,16 @@
     .foot-sub {
       text-align: center;
       color: var(--mist);
-      font-size: 15px;
+      font-size: clamp(14px, 2.5vw, 15px);
       max-width: 560px;
       margin: 0 auto 90px;
-      line-height: 1.8
+      line-height: 1.8;
+      padding-inline: 16px;
     }
 
     .creators {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 22px;
       max-width: 860px;
       margin: 0 auto 80px
@@ -1920,7 +2063,7 @@
       border-radius: 26px;
       background: rgba(10, 33, 54, .5);
       text-align: center;
-      transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), border-color .3s
+      transition: transform.4s cubic-bezier(.34, 1.56, .64, 1), border-color.3s
     }
 
     .creator-card:hover {
@@ -1942,7 +2085,7 @@
       color: #04101c
     }
 
-    .creator-card.c2 .creator-avatar {
+    .creator-card.c2.creator-avatar {
       background: linear-gradient(145deg, #7a5cff, #c86bff)
     }
 
@@ -1973,12 +2116,13 @@
       justify-content: center;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 80px
+      margin-bottom: 80px;
+      padding-inline: 16px;
     }
 
     .foot-links {
       border-top: 1px solid var(--line);
-      padding: 34px 0;
+      padding: 34px 16px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1987,11 +2131,12 @@
       font-family: var(--mono);
       font-size: 12px;
       color: var(--mist);
-      letter-spacing: .06em
+      letter-spacing: .06em;
+      text-align: center;
     }
 
     .foot-links a {
-      transition: color .3s
+      transition: color.3s
     }
 
     .foot-links a:hover {
@@ -2000,13 +2145,232 @@
 
     .foot-credit {
       border-top: 1px solid rgba(140, 200, 235, .07);
-      padding: 24px 0;
+      padding: 24px 16px;
       text-align: center;
       font-family: var(--mono);
       font-size: 10.5px;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: rgba(143, 176, 196, .45)
+      color: rgba(143, 176, 196, .45);
+      line-height: 1.6;
+    }
+
+    /* ===== RESPONSIVE BREAKPOINTS ===== */
+    @media (max-width: 1080px) {
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 74px;
+        left: 0;
+        right: 0;
+        background: rgba(4, 16, 28, .97);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+        gap: 0;
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: .4s cubic-bezier(.4, 0, .2, 1);
+      }
+
+      .nav.open.nav-links {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links a {
+        display: flex !important;
+        width: 100%;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(140, 200, 235, .08);
+        font-size: 13px;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      .nav-cta {
+        margin-top: 16px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .code-layout,
+      .filter-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .notes-panel {
+        position: relative;
+        top: 0;
+      }
+
+      .calc-panel {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: min(1240px, calc(100% - 32px));
+      }
+
+      .chapter {
+        padding: 80px 0;
+      }
+
+      .chapter-num {
+        display: none;
+      }
+
+      .hero {
+        padding: 100px 0 70px;
+      }
+
+      .hero-foot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-actions.btn {
+        flex: 1;
+        min-width: 140px;
+        padding: 15px 20px;
+        font-size: 14px;
+      }
+
+      .gap-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .gap-row.bar {
+        order: 2;
+      }
+
+      .gap-row.pct {
+        order: 3;
+        text-align: left;
+      }
+
+      .schematic {
+        padding: 24px 16px;
+        border-radius: 20px;
+      }
+
+      .schematic svg {
+        min-width: 600px;
+      }
+
+      .stat-grid,
+      .step-grid,
+      .future-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-viz,
+      .filter-detail,
+      .notes-panel {
+        padding: 28px 20px;
+        border-radius: 20px;
+      }
+
+      .cylinder {
+        max-width: 100%;
+        transform: none !important;
+      }
+
+      .f-layer.fl-arrow {
+        display: none;
+      }
+
+      .calc-outs {
+        grid-template-columns: 1fr;
+      }
+
+      .conclusion {
+        grid-template-columns: 1fr;
+        padding: 32px 22px;
+        gap: 28px;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .conclusion p {
+        text-align: center;
+      }
+
+      .sdg-badge {
+        transform: rotate(0);
+        width: 130px;
+        height: 130px;
+      }
+
+      footer {
+        padding-top: 70px;
+      }
+
+      .creators {
+        grid-template-columns: 1fr;
+      }
+
+      .scroll-hint {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .chip {
+        padding: 8px 14px;
+      }
+
+      .code-body {
+        font-size: 12px;
+      }
+
+      .code-titlebar {
+        gap: 6px;
+      }
+
+      .code-filename,
+      .code-meta {
+        font-size: 10px;
+      }
+
+      .lab-table {
+        font-size: 12px;
+        min-width: 500px;
+      }
+
+      .lab-table th,
+      .lab-table td {
+        padding: 12px 14px;
+      }
     }
 
     @media (prefers-reduced-motion:reduce) {
@@ -2023,30 +2387,14 @@
         transform: none
       }
 
-      .hero h1 .mask-inner {
+      .hero h1.mask-inner {
         transform: none
-      }
-    }
-
-    @media (max-width:700px) {
-      .chapter {
-        padding: 90px 0
-      }
-
-      .gap-row {
-        grid-template-columns: 110px 1fr 54px;
-        font-size: 12.5px
-      }
-
-      .calc-outs {
-        grid-template-columns: 1fr
       }
     }
   </style>
 </head>
 
 <body>
-
   <div class="grain"></div>
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
@@ -2056,6 +2404,7 @@
     <div class="loader-count"><span id="loadNum">0</span><sup>%</sup></div>
     <div class="loader-bar"><i id="loadBar"></i></div>
   </div>
+
   <nav class="nav" id="nav">
     <div class="nav-inner container">
       <a class="brand" href="#home" data-testid="nav-brand" data-scroll>
@@ -2064,7 +2413,8 @@
           </svg></span>
         AQUAHARVEST
       </a>
-      <div class="nav-links">
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span></button>
+      <div class="nav-links" id="navLinks">
         <a href="#crisis" data-scroll data-testid="nav-crisis"><span class="n">01</span>Crisis</a>
         <a href="#method" data-scroll data-testid="nav-method"><span class="n">02</span>Method</a>
         <a href="#code" data-scroll data-testid="nav-code"><span class="n">03</span>Code</a>
@@ -2077,7 +2427,6 @@
   </nav>
 
   <main>
-    <!-- ================= HERO ================= -->
     <section class="hero" id="home" data-testid="hero">
       <canvas id="rainCanvas"></canvas>
       <div class="hero-glow g1"></div>
@@ -2100,20 +2449,21 @@
                 →</a>
               <a class="btn btn-ghost" href="#filter" data-scroll data-testid="hero-cta-filter">Run the Filter</a>
             </div>
+            <div class="hero-chips" id="heroChips">
+              <span class="chip"><b>1 mm</b> rain × 1 m² = <b>1 litre</b></span>
+              <span class="chip"><b>99.6%</b> turbidity removed</span>
+              <span class="chip"><b>₹15,000</b> full setup</span>
+            </div>
           </div>
-          <div class="hero-chips" id="heroChips">
-            <span class="chip"><b>1 mm</b> rain × 1 m² = <b>1 litre</b></span>
-            <span class="chip"><b>99.6%</b> turbidity removed</span>
-            <span class="chip"><b>₹15,000</b> full setup</span>
-          </div>
-        </div>
-      </div>
-      <div class="scroll-hint">Scroll<i></i></div>
+          <div class="scroll-hint">Scroll<i></i></div>
     </section>
 
-    <!-- ================= MARQUEE ================= -->
     <div class="marquee" data-testid="marquee">
       <div class="marquee-track" id="marqueeTrack">
+        <span><b>Harvest the sky</b> every drop is data <i class="dot">·</i></span>
+        <span><b>SDG 6</b> clean water &amp; sanitation <i class="dot">·</i></span>
+        <span><b>1 millimetre</b> of rain = 1 litre per m² <i class="dot">·</i></span>
+        <span><b>Pebbles → Sand → Cotton</b> gravity does the work <i class="dot">·</i></span>
         <span><b>Harvest the sky</b> every drop is data <i class="dot">·</i></span>
         <span><b>SDG 6</b> clean water &amp; sanitation <i class="dot">·</i></span>
         <span><b>1 millimetre</b> of rain = 1 litre per m² <i class="dot">·</i></span>
@@ -2121,7 +2471,6 @@
       </div>
     </div>
 
-    <!-- ================= 01 CRISIS ================= -->
     <section class="chapter" id="crisis">
       <div class="chapter-num" data-speed="0.6">01</div>
       <div class="container">
@@ -2133,7 +2482,6 @@
             straight into drains. AquaHarvest asks a simple question: <strong>what if every roof were a
               reservoir?</strong></p>
         </div>
-
         <div class="stat-grid">
           <div class="stat-card alert" data-reveal data-testid="stat-stress">
             <div class="stat-value"><span data-count="600">0</span><span class="unit">M people</span></div>
@@ -2161,27 +2509,23 @@
             <div class="stat-desc">People globally lack safely managed drinking water at home.</div>
             <span class="stat-src">Source: WHO / UNICEF JMP</span>
           </div>
-        </div>
-
-        <div class="quote-strip" data-reveal data-testid="crisis-quote">
-          <p>"By 2030, India's water demand is projected to be twice the available supply — implying severe scarcity for
-            hundreds of millions."</p>
-          <cite>— NITI Aayog, Composite Water Management Index</cite>
-        </div>
-
-        <div class="gap-viz" data-reveal data-testid="gap-viz">
-          <h3>India · 2030 — Demand vs. Available Supply</h3>
-          <div class="gap-row demand"><span>Projected demand</span>
-            <div class="bar"><i data-width="100"></i></div><span class="pct">2×</span>
+          <div class="quote-strip" data-reveal data-testid="crisis-quote">
+            <p>"By 2030, India's water demand is projected to be twice the available supply — implying severe scarcity
+              for hundreds of millions."</p>
+            <cite>— NITI Aayog, Composite Water Management Index</cite>
           </div>
-          <div class="gap-row supply"><span>Available supply</span>
-            <div class="bar"><i data-width="50"></i></div><span class="pct">1×</span>
+          <div class="gap-viz" data-reveal data-testid="gap-viz">
+            <h3>India · 2030 — Demand vs. Available Supply</h3>
+            <div class="gap-row demand"><span>Projected demand</span>
+              <div class="bar"><i data-width="100"></i></div><span class="pct">2×</span>
+            </div>
+            <div class="gap-row supply"><span>Available supply</span>
+              <div class="bar"><i data-width="50"></i></div><span class="pct">1×</span>
+            </div>
           </div>
         </div>
-      </div>
     </section>
 
-    <!-- ================= 02 METHOD ================= -->
     <section class="chapter alt" id="method">
       <div class="chapter-num" data-speed="0.6">02</div>
       <div class="container">
@@ -2193,7 +2537,6 @@
             re-engineered here with modern materials.
           </p>
         </div>
-
         <div class="schematic" data-reveal data-testid="schematic">
           <svg viewBox="0 0 1000 300" fill="none" xmlns="http://www.w3.org/2000/svg" role="img"
             aria-label="Working principle diagram of the AquaHarvest system">
@@ -2203,7 +2546,6 @@
                 <stop offset="1" stop-color="#3ee0ff" />
               </linearGradient>
             </defs>
-            <!-- rain -->
             <g stroke="#3ee0ff" stroke-width="2" stroke-linecap="round" opacity=".7">
               <line x1="90" y1="18" x2="82" y2="38" />
               <line x1="140" y1="12" x2="132" y2="32" />
@@ -2211,61 +2553,45 @@
               <line x1="240" y1="12" x2="232" y2="32" />
               <line x1="290" y1="18" x2="282" y2="38" />
             </g>
-            <!-- roof -->
-            <path d="M60 120 L200 55 L340 120" stroke="#ecf7ff" stroke-width="3" fill="rgba(47,139,255,.08)" />
-            <text x="200" y="42" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="12" text-anchor="middle"
-              letter-spacing="3">1 · CATCHMENT</text>
-            <text x="200" y="100" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="11"
-              text-anchor="middle">rooftop</text>
-            <!-- gutter -->
+            <path d="M60 120 L200 55 L340 120" stroke="#ecf7ff" stroke-width="3" fill="rgba(47,139,255,.08)" /><text
+              x="200" y="42" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="12" text-anchor="middle"
+              letter-spacing="3">1 · CATCHMENT</text><text x="200" y="100" fill="#8fb0c4" font-family="IBM Plex Mono"
+              font-size="11" text-anchor="middle">rooftop</text>
             <line x1="340" y1="120" x2="340" y2="230" stroke="#ecf7ff" stroke-width="3" />
-            <path d="M340 130 L340 225" stroke="url(#waterG)" stroke-width="4" stroke-dasharray="10 8" />
-            <text x="352" y="180" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="12" letter-spacing="3">2 ·
-              PIPES</text>
-            <!-- first flush -->
+            <path d="M340 130 L340 225" stroke="url(#waterG)" stroke-width="4" stroke-dasharray="10 8" /><text x="352"
+              y="180" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="12" letter-spacing="3">2 · PIPES</text>
             <rect x="380" y="180" width="120" height="80" rx="12" stroke="#ecf7ff" stroke-width="2.5"
-              fill="rgba(255,107,94,.08)" />
-            <text x="440" y="215" fill="#ff6b5e" font-family="IBM Plex Mono" font-size="11" text-anchor="middle"
-              letter-spacing="2">3 · FIRST</text>
-            <text x="440" y="233" fill="#ff6b5e" font-family="IBM Plex Mono" font-size="11" text-anchor="middle"
-              letter-spacing="2">FLUSH</text>
-            <text x="440" y="278" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="10" text-anchor="middle">dust
-              &amp; droppings out</text>
+              fill="rgba(255,107,94,.08)" /><text x="440" y="215" fill="#ff6b5e" font-family="IBM Plex Mono"
+              font-size="11" text-anchor="middle" letter-spacing="2">3 · FIRST</text><text x="440" y="233"
+              fill="#ff6b5e" font-family="IBM Plex Mono" font-size="11" text-anchor="middle"
+              letter-spacing="2">FLUSH</text><text x="440" y="278" fill="#8fb0c4" font-family="IBM Plex Mono"
+              font-size="10" text-anchor="middle">dust &amp; droppings out</text>
             <line x1="340" y1="220" x2="380" y2="220" stroke="url(#waterG)" stroke-width="4" />
-            <!-- filter -->
             <rect x="545" y="120" width="150" height="140" rx="14" stroke="#ecf7ff" stroke-width="2.5" />
             <rect x="548" y="123" width="144" height="44" rx="12" fill="#4a5a6b" />
             <rect x="548" y="167" width="144" height="44" fill="#b98934" />
-            <rect x="548" y="211" width="144" height="46" rx="12" fill="#dde6ee" />
-            <text x="620" y="150" fill="#eaf2f8" font-family="IBM Plex Mono" font-size="11"
-              text-anchor="middle">pebbles</text>
-            <text x="620" y="194" fill="#2a1e05" font-family="IBM Plex Mono" font-size="11"
-              text-anchor="middle">sand</text>
-            <text x="620" y="240" fill="#24323f" font-family="IBM Plex Mono" font-size="11"
-              text-anchor="middle">cotton</text>
-            <text x="620" y="102" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="12" text-anchor="middle"
+            <rect x="548" y="211" width="144" height="46" rx="12" fill="#dde6ee" /><text x="620" y="150" fill="#eaf2f8"
+              font-family="IBM Plex Mono" font-size="11" text-anchor="middle">pebbles</text><text x="620" y="194"
+              fill="#2a1e05" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">sand</text><text x="620"
+              y="240" fill="#24323f" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">cotton</text><text
+              x="620" y="102" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="12" text-anchor="middle"
               letter-spacing="3">4 · FILTER</text>
             <line x1="500" y1="220" x2="530" y2="220" stroke="url(#waterG)" stroke-width="4" />
             <path d="M528 210 L545 220 L528 230" stroke="url(#waterG)" stroke-width="4" fill="none" />
             <path d="M695 190 L745 190 L745 230" stroke="url(#waterG)" stroke-width="4" fill="none" />
-            <!-- tank -->
             <rect x="760" y="150" width="180" height="110" rx="14" stroke="#ecf7ff" stroke-width="2.5"
               fill="rgba(62,224,255,.06)" />
             <path d="M763 190 h174 v57 a12 12 0 0 1 -12 12 h-150 a12 12 0 0 1 -12 -12 Z" fill="rgba(62,224,255,.25)" />
             <text x="850" y="182" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="12" text-anchor="middle"
-              letter-spacing="3">5 · STORAGE</text>
-            <text x="850" y="228" fill="#3ee0ff" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">clean
-              water</text>
-            <!-- tap -->
-            <path d="M850 260 v22 m-14 0 h28" stroke="#ecf7ff" stroke-width="3" stroke-linecap="round" />
-            <text x="850" y="298" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="11" text-anchor="middle"
+              letter-spacing="3">5 · STORAGE</text><text x="850" y="228" fill="#3ee0ff" font-family="IBM Plex Mono"
+              font-size="11" text-anchor="middle">clean water</text>
+            <path d="M850 260 v22 m-14 0 h28" stroke="#ecf7ff" stroke-width="3" stroke-linecap="round" /><text x="850"
+              y="298" fill="#8fb0c4" font-family="IBM Plex Mono" font-size="11" text-anchor="middle"
               letter-spacing="2">6 · USE / RECHARGE</text>
           </svg>
         </div>
-
         <div class="step-grid">
-          <div class="step-card" data-reveal data-testid="step-catchment">
-            <span class="step-num">STEP / 01</span>
+          <div class="step-card" data-reveal data-testid="step-catchment"><span class="step-num">STEP / 01</span>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
                 <path d="M3 12 12 4l9 8M6 10v10h12V10" />
               </svg></div>
@@ -2273,16 +2599,14 @@
             <p>The rooftop is the catchment area. A 100 m² roof intercepts ~79,000 L in an average Delhi monsoon year.
             </p>
           </div>
-          <div class="step-card" data-reveal data-testid="step-conveyance">
-            <span class="step-num">STEP / 02</span>
+          <div class="step-card" data-reveal data-testid="step-conveyance"><span class="step-num">STEP / 02</span>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
                 <path d="M4 4h10v6H8v10M14 20h6" />
               </svg></div>
             <h3>Conveyance</h3>
             <p>PVC gutters and downpipes channel runoff with a 1% slope — no pumps, no energy, no moving parts.</p>
           </div>
-          <div class="step-card" data-reveal data-testid="step-firstflush">
-            <span class="step-num">STEP / 03</span>
+          <div class="step-card" data-reveal data-testid="step-firstflush"><span class="step-num">STEP / 03</span>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
                 <path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5" />
               </svg></div>
@@ -2290,8 +2614,7 @@
             <p>The first 10–15 minutes of rain carry roof dust and droppings. A diverter discards it automatically,
               protecting the filter.</p>
           </div>
-          <div class="step-card" data-reveal data-testid="step-filtration">
-            <span class="step-num">STEP / 04</span>
+          <div class="step-card" data-reveal data-testid="step-filtration"><span class="step-num">STEP / 04</span>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
                 <path d="M4 5h16l-6 8v6l-4 2v-8L4 5Z" />
               </svg></div>
@@ -2299,8 +2622,7 @@
             <p>Pebbles strain debris, sand strips silt by depth filtration, cotton polishes clarity. 99.6% of turbidity
               gone.</p>
           </div>
-          <div class="step-card" data-reveal data-testid="step-storage">
-            <span class="step-num">STEP / 05</span>
+          <div class="step-card" data-reveal data-testid="step-storage"><span class="step-num">STEP / 05</span>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
                 <rect x="4" y="6" width="16" height="14" rx="2" />
                 <path d="M4 12h16" />
@@ -2309,8 +2631,7 @@
             <p>A food-grade HDPE tank holds the harvest. An overflow line routes surplus to a recharge pit for the water
               table.</p>
           </div>
-          <div class="step-card" data-reveal data-testid="step-use">
-            <span class="step-num">STEP / 06</span>
+          <div class="step-card" data-reveal data-testid="step-use"><span class="step-num">STEP / 06</span>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
                 <path d="M12 3c0 0-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11Z" />
               </svg></div>
@@ -2322,7 +2643,6 @@
       </div>
     </section>
 
-    <!-- ================= 03 CODE ================= -->
     <section class="chapter" id="code">
       <div class="chapter-num" data-speed="0.6">03</div>
       <div class="container">
@@ -2331,34 +2651,51 @@
           <h2>One filter, <em>eight languages.</em></h2>
           <p class="chapter-lede">Each filter layer keeps a fixed fraction of turbidity (NTU) and dissolved solids
             (TDS). The algorithm multiplies those factors in sequence — the same physics, expressed in <strong>Python,
-              Java, C++, C#, C, Rust, Go and Kotlin</strong>. Switch tabs; the Judge's Notes explain every key line.</p>
+              Java, C++, C#, C, Rust, Go and Kotlin</strong>.</p>
         </div>
 
         <div class="code-layout">
           <div data-reveal>
-            <div class="lang-tabs" id="langTabs" role="tablist" data-testid="lang-tabs"></div>
+            <!-- Language tabs with fade + swipe hint -->
+            <div class="tabs-wrap">
+              <div class="lang-tabs" id="langTabs" role="tablist"></div>
+              <div class="tabs-fade"></div>
+            </div>
+
             <div class="code-window">
               <div class="code-titlebar">
                 <span class="tl"></span><span class="tl"></span><span class="tl"></span>
                 <span class="code-filename" id="codeFilename">filter.py</span>
-                <span class="code-meta" id="codeMeta">O(L) time · O(1) space</span>
+                <span class="code-meta" id="codeMeta">O(L) · O(1)</span>
               </div>
-              <div class="code-body" id="codeBody" data-testid="code-panel"></div>
-              <div class="code-run" data-testid="code-output"><span class="prompt">$&nbsp;</span><span
-                  id="codeRunLine">python filter.py</span> &nbsp;→&nbsp; Purity: 99.6%</div>
+
+              <div class="code-scroll-wrapper" id="codeWrapper">
+                <div class="code-body" id="codeBody"></div>
+              </div>
+
+              <!-- CUSTOM SCROLL HANDLE -->
+              <div class="code-scroll-track" id="scrollTrack">
+                <div class="code-scroll-thumb" id="scrollThumb">
+                  <div class="thumb-inner"></div>
+                </div>
+              </div>
+
+              <div class="code-run"><span class="prompt">$ </span><span id="codeRunLine">python filter.py</span> →
+                Purity: 99.6%</div>
             </div>
+            <div class="scroll-hint-mobile">← drag handle or swipe to see full code →</div>
           </div>
-          <aside class="notes-panel" data-reveal data-testid="judge-notes">
+
+          <aside class="notes-panel" data-reveal>
             <h3>Judge's Notes</h3>
             <div class="notes-lang" id="notesLang">Python</div>
             <ul class="notes-list" id="notesList"></ul>
-            <div class="notes-badge"><span>TIME <b>O(L)</b></span><span>SPACE <b>O(1)</b></span><span>L = 3
-                layers</span></div>
+            <div class="notes-badge"><span>TIME <b>O(L)</b></span><span>SPACE <b>O(1)</b></span><span>L = 3</span></div>
           </aside>
         </div>
       </div>
     </section>
-    <!-- ================= 04 FILTER ================= -->
+
     <section class="chapter alt" id="filter">
       <div class="chapter-num" data-speed="0.6">04</div>
       <div class="container">
@@ -2369,29 +2706,21 @@
               Filtration</strong> to watch a drop of monsoon rain travel the column — turbidity and TDS falling in real
             time.</p>
         </div>
-
         <div class="filter-layout">
           <div class="filter-viz" data-reveal>
             <p class="filter-viz-title">Live Cross-Section · Click a Layer</p>
             <div class="cylinder" id="cylinder" data-testid="filter-cylinder">
               <div class="flow-drop" id="flowDrop"></div>
-              <button class="f-layer f-pebbles selected" data-layer="pebbles" data-testid="filter-layer-pebbles">
-                <span class="fl-name">Pebbles &amp; Gravel</span>
-                <span class="fl-size">10–20 mm · mechanical straining</span>
-                <span class="fl-arrow">INSPECT →</span>
-              </button>
-              <button class="f-layer f-sand" data-layer="sand" data-testid="filter-layer-sand">
-                <span class="fl-name">River Sand</span>
-                <span class="fl-size">0.2–2 mm · depth filtration</span>
-                <span class="fl-arrow">INSPECT →</span>
-              </button>
-              <button class="f-layer f-cotton" data-layer="cotton" data-testid="filter-layer-cotton">
-                <span class="fl-name">Cotton &amp; Mesh</span>
-                <span class="fl-size">&lt; 0.1 mm · final polish</span>
-                <span class="fl-arrow">INSPECT →</span>
-              </button>
+              <button class="f-layer f-pebbles selected" data-layer="pebbles" data-testid="filter-layer-pebbles"><span
+                  class="fl-name">Pebbles &amp; Gravel</span><span class="fl-size">10–20 mm · mechanical
+                  straining</span><span class="fl-arrow">INSPECT →</span></button>
+              <button class="f-layer f-sand" data-layer="sand" data-testid="filter-layer-sand"><span
+                  class="fl-name">River Sand</span><span class="fl-size">0.2–2 mm · depth filtration</span><span
+                  class="fl-arrow">INSPECT →</span></button>
+              <button class="f-layer f-cotton" data-layer="cotton" data-testid="filter-layer-cotton"><span
+                  class="fl-name">Cotton &amp; Mesh</span><span class="fl-size">&lt; 0.1 mm · final polish</span><span
+                  class="fl-arrow">INSPECT →</span></button>
             </div>
-
             <div class="meter-block">
               <div class="meter">
                 <div class="meter-row"><span>TURBIDITY</span><b><span id="ntuVal"
@@ -2409,14 +2738,12 @@
                 <div class="meter-bar"><i id="purityBar"></i></div>
               </div>
             </div>
-
             <button class="btn btn-primary sim-btn" id="simBtn" data-testid="simulate-btn">▶ Simulate
               Filtration</button>
             <p class="sim-result" id="simResult" data-testid="sim-result">✦ Crystal-pure water ready — 99.6% clarity</p>
           </div>
-
-          <div class="filter-detail" data-reveal data-testid="filter-detail">
-            <span class="fd-tag" id="fdTag">Layer 01 / 03</span>
+          <div class="filter-detail" data-reveal data-testid="filter-detail"><span class="fd-tag" id="fdTag">Layer 01 /
+              03</span>
             <h3 id="fdTitle">Pebbles &amp; Gravel</h3>
             <p id="fdDesc">The first line of defence. Washed river pebbles form a coarse bed that physically blocks
               leaves, twigs, insects and grit larger than ~2 mm. Because pebbles don't compact, water keeps flowing even
@@ -2438,7 +2765,6 @@
       </div>
     </section>
 
-    <!-- ================= 05 RESULTS ================= -->
     <section class="chapter" id="results">
       <div class="chapter-num" data-speed="0.6">05</div>
       <div class="container">
@@ -2449,7 +2775,6 @@
             collapsed by <strong>99.6%</strong>; pH neutralised naturally. Residual dissolved solids are harmless
             minerals — an activated-carbon stage (see Future Scope) polishes them further.</p>
         </div>
-
         <div class="table-wrap" data-reveal data-testid="results-table">
           <table class="lab-table">
             <thead>
@@ -2502,39 +2827,32 @@
           <div class="lab-note">// TDS below 500 mg/L meets BIS IS 10500 drinking-water acceptance limits. Residual TDS
             = dissolved calcium &amp; magnesium — beneficial minerals, not contaminants.</div>
         </div>
-
         <div class="roi-grid">
-          <div class="roi-card" data-reveal data-testid="roi-cost">
-            <span class="roi-k">Setup Cost</span>
+          <div class="roi-card" data-reveal data-testid="roi-cost"><span class="roi-k">Setup Cost</span>
             <div class="roi-v">₹15,000<span>one-time</span></div>
             <div class="roi-d">Pipes, first-flush diverter, filter media &amp; 1,000 L tank for a 100 m² roof.</div>
           </div>
-          <div class="roi-card" data-reveal data-testid="roi-harvest">
-            <span class="roi-k">Annual Harvest</span>
+          <div class="roi-card" data-reveal data-testid="roi-harvest"><span class="roi-k">Annual Harvest</span>
             <div class="roi-v"><span data-count="67150">0</span><span>litres</span></div>
             <div class="roi-d">Delhi's 790 mm rainfall × 100 m² roof × 85% collection efficiency.</div>
           </div>
-          <div class="roi-card" data-reveal data-testid="roi-savings">
-            <span class="roi-k">Annual Savings</span>
+          <div class="roi-card" data-reveal data-testid="roi-savings"><span class="roi-k">Annual Savings</span>
             <div class="roi-v">₹<span data-count="26860">0</span><span>/year</span></div>
             <div class="roi-d">Tanker water costs ~₹0.40/litre. The harvest replaces it for non-potable use.</div>
           </div>
-          <div class="roi-card" data-reveal data-testid="roi-payback">
-            <span class="roi-k">Payback Period</span>
+          <div class="roi-card" data-reveal data-testid="roi-payback"><span class="roi-k">Payback Period</span>
             <div class="roi-v"><span data-count="7">0</span><span>months</span></div>
             <div class="roi-d">After month 7, every monsoon is pure profit — for 15+ years of system life.</div>
           </div>
         </div>
-
         <div class="calc-panel" id="calculator" data-reveal>
           <div>
             <h3 class="calc-title">Your roof, <em>your reservoir.</em></h3>
             <p class="calc-sub">Pick your city, set your roof area and efficiency — the physics (1 mm × 1 m² = 1 L) does
               the rest, live.</p>
             <div class="calc-controls">
-              <div class="calc-control">
-                <label for="calcCity">City · Annual Rainfall <output id="cityRainOut">790 mm</output></label>
-                <select class="city-select" id="calcCity" data-testid="calc-city">
+              <div class="calc-control"><label for="calcCity">City · Annual Rainfall <output id="cityRainOut">790
+                    mm</output></label><select class="city-select" id="calcCity" data-testid="calc-city">
                   <option value="790" selected>Delhi — 790 mm</option>
                   <option value="650">Jaipur — 650 mm</option>
                   <option value="815">Hyderabad — 815 mm</option>
@@ -2543,23 +2861,19 @@
                   <option value="1580">Kolkata — 1,580 mm</option>
                   <option value="2360">Mumbai — 2,360 mm</option>
                   <option value="3000">Kochi — 3,000 mm</option>
-                </select>
-              </div>
-              <div class="calc-control">
-                <label for="calcArea">Roof Area <output id="areaOut">100 m²</output></label>
-                <input type="range" id="calcArea" data-testid="calc-area" min="20" max="500" value="100" step="5">
-              </div>
-              <div class="calc-control">
-                <label for="calcEff">Collection Efficiency <output id="effOut">85%</output></label>
-                <input type="range" id="calcEff" data-testid="calc-eff" min="50" max="95" value="85" step="5">
-              </div>
+                </select></div>
+              <div class="calc-control"><label for="calcArea">Roof Area <output id="areaOut">100
+                    m²</output></label><input type="range" id="calcArea" data-testid="calc-area" min="20" max="500"
+                  value="100" step="5"></div>
+              <div class="calc-control"><label for="calcEff">Collection Efficiency <output
+                    id="effOut">85%</output></label><input type="range" id="calcEff" data-testid="calc-eff" min="50"
+                  max="95" value="85" step="5"></div>
             </div>
           </div>
           <div class="calc-results">
-            <div class="calc-hero-out">
-              <span class="lbl">Estimated Annual Harvest</span>
-              <div class="big" id="calcLitres" data-testid="calc-result-litres">67,150</div>
-              <span class="unit">litres / year</span>
+            <div class="calc-hero-out"><span class="lbl">Estimated Annual Harvest</span>
+              <div class="big" id="calcLitres" data-testid="calc-result-litres">67,150</div><span class="unit">litres /
+                year</span>
             </div>
             <div class="calc-outs">
               <div class="calc-out"><span class="v" id="calcDays" data-testid="calc-days">4,197</span><span
@@ -2574,7 +2888,6 @@
       </div>
     </section>
 
-    <!-- ================= 06 FUTURE ================= -->
     <section class="chapter alt" id="future">
       <div class="chapter-num" data-speed="0.6">06</div>
       <div class="container">
@@ -2584,34 +2897,28 @@
           <p class="chapter-lede">The prototype proves the physics. The roadmap makes it smart, potable and
             community-scale.</p>
         </div>
-
         <div class="future-grid">
-          <div class="future-card" data-reveal data-testid="future-iot">
-            <span class="f-num">NEXT / 01</span>
+          <div class="future-card" data-reveal data-testid="future-iot"><span class="f-num">NEXT / 01</span>
             <h3>IoT Sensing</h3>
             <p>Ultrasonic level sensors, TDS probes and GSM alerts report tank status to any phone — no app install,
               just an SMS.</p>
           </div>
-          <div class="future-card" data-reveal data-testid="future-ai">
-            <span class="f-num">NEXT / 02</span>
+          <div class="future-card" data-reveal data-testid="future-ai"><span class="f-num">NEXT / 02</span>
             <h3>AI Rain Prediction</h3>
             <p>A lightweight ML model on IMD forecast data pre-emptively empties tanks before storms and times the
               first-flush cycle.</p>
           </div>
-          <div class="future-card" data-reveal data-testid="future-potable">
-            <span class="f-num">NEXT / 03</span>
+          <div class="future-card" data-reveal data-testid="future-potable"><span class="f-num">NEXT / 03</span>
             <h3>Potable Upgrade</h3>
             <p>Activated carbon + UV stage lifts the harvest to full BIS drinking standard, cutting TDS and pathogens
               entirely.</p>
           </div>
-          <div class="future-card" data-reveal data-testid="future-community">
-            <span class="f-num">NEXT / 04</span>
+          <div class="future-card" data-reveal data-testid="future-community"><span class="f-num">NEXT / 04</span>
             <h3>Community Scale</h3>
             <p>Shared recharge pits for schools and housing societies — one monsoon can raise a local water table
               measurably.</p>
           </div>
         </div>
-
         <div class="conclusion" data-reveal data-testid="conclusion">
           <div>
             <h3>The monsoon is not the problem. <em>Letting it escape is.</em></h3>
@@ -2627,13 +2934,11 @@
     </section>
   </main>
 
-  <!-- ================= FOOTER ================= -->
   <footer id="contact">
     <div class="container">
       <h2 class="foot-title" data-reveal>Harvest <em>the sky.</em></h2>
       <p class="foot-sub" data-reveal>AquaHarvest — an enterprise-grade water-conservation platform built for the
         national stage, where innovation meets sustainability.</p>
-
       <div class="creators" data-reveal data-testid="footer-creators">
         <div class="creator-card" data-testid="creator-rishabh">
           <div class="creator-avatar">RS</div>
@@ -2650,22 +2955,15 @@
             real-world impact and meaningful solutions.</p>
         </div>
       </div>
-
-      <div class="foot-tech" data-reveal>
-        <span class="chip">HTML5</span><span class="chip">Advanced CSS3</span><span class="chip">Vanilla
-          JavaScript</span><span class="chip">GSAP Motion</span><span class="chip">Lenis Smooth Scroll</span><span
-          class="chip">Canvas Rain Engine</span><span class="chip">Responsive Design</span><span
-          class="chip">Accessibility</span>
-      </div>
-
-      <div class="foot-links">
-        <span>🌊 AquaHarvest 2026</span><span>·</span>
-        <a href="#home" data-scroll data-testid="foot-home">Home</a><span>·</span>
-        <a href="#crisis" data-scroll data-testid="foot-crisis">Crisis</a><span>·</span>
-        <a href="#code" data-scroll data-testid="foot-code">Code</a><span>·</span>
-        <a href="#calculator" data-scroll data-testid="foot-calculator">Calculator</a><span>·</span>
-        <span>Designed with ♥ for Excellence</span>
-      </div>
+      <div class="foot-tech" data-reveal><span class="chip">HTML5</span><span class="chip">Advanced CSS3</span><span
+          class="chip">Vanilla JavaScript</span><span class="chip">GSAP Motion</span><span class="chip">Lenis Smooth
+          Scroll</span><span class="chip">Canvas Rain Engine</span><span class="chip">Responsive Design</span><span
+          class="chip">Accessibility</span></div>
+      <div class="foot-links"><span>🌊 AquaHarvest 2026</span><span>·</span><a href="#home" data-scroll
+          data-testid="foot-home">Home</a><span>·</span><a href="#crisis" data-scroll
+          data-testid="foot-crisis">Crisis</a><span>·</span><a href="#code" data-scroll
+          data-testid="foot-code">Code</a><span>·</span><a href="#calculator" data-scroll
+          data-testid="foot-calculator">Calculator</a><span>·</span><span>Designed with ♥ for Excellence</span></div>
       <div class="foot-credit">AquaHarvest © 2026 · Created by Rishabh Raj Singh &amp; Dev Pratap Singh ·
         Enterprise-Grade Water Conservation Platform</div>
     </div>
@@ -2676,345 +2974,81 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script>
     gsap.registerPlugin(ScrollTrigger);
-
-    /* ---------- Lenis smooth scroll ---------- */
     const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
 
+    const nav = document.getElementById('nav');
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => nav.classList.toggle('open'));
     document.querySelectorAll('[data-scroll]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -70 }); }
+        if (target) { e.preventDefault(); nav.classList.remove('open'); lenis.scrollTo(target, { offset: -70 }); }
       });
     });
-
-    /* ---------- Loader → hero reveal ---------- */
-    const loadObj = { v: 0 };
-    gsap.to(loadObj, {
-      v: 100, duration: 1.6, ease: 'power2.inOut',
-      onUpdate: () => {
-        document.getElementById('loadNum').textContent = Math.round(loadObj.v);
-        document.getElementById('loadBar').style.width = loadObj.v + '%';
-      },
-      onComplete: () => {
-        const tl = gsap.timeline();
-        tl.to('#loader', { yPercent: -100, duration: .9, ease: 'power4.inOut' })
-          .set('#loader', { display: 'none' })
-          .to('.hero h1 .mask-inner', { y: 0, duration: 1.1, ease: 'power4.out', stagger: .1 }, '-=.45')
-          .from('#heroOverline', { opacity: 0, x: -30, duration: .7 }, '-=.8')
-          .from('#heroCopy, #heroActions', { opacity: 0, y: 30, duration: .8, stagger: .12 }, '-=.6')
-          .from('#heroChips .chip', { opacity: 0, y: 20, duration: .6, stagger: .08 }, '-=.5');
-      }
-    });
-
-    /* ---------- Nav ---------- */
-    const nav = document.getElementById('nav');
     ScrollTrigger.create({ start: 60, onUpdate: self => nav.classList.toggle('scrolled', self.scroll() > 60) });
 
-    /* ---------- Reveals ---------- */
-    gsap.utils.toArray('[data-reveal]').forEach(el => {
-      gsap.to(el, {
-        opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' }
-      });
-    });
-
-    /* ---------- Parallax chapter numbers ---------- */
-    gsap.utils.toArray('[data-speed]').forEach(el => {
-      gsap.fromTo(el, { y: 60 }, {
-        y: -60, ease: 'none',
-        scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
-      });
-    });
-
-    /* ---------- Gap bars ---------- */
-    gsap.utils.toArray('.gap-row .bar i').forEach(bar => {
-      gsap.to(bar, {
-        width: bar.dataset.width + '%', duration: 1.4, ease: 'power3.out',
-        scrollTrigger: { trigger: bar, start: 'top 90%' }
-      });
-    });
-
-    /* ---------- Counters ---------- */
-    gsap.utils.toArray('[data-count]').forEach(el => {
-      const target = parseFloat(el.dataset.count);
-      const decimals = parseInt(el.dataset.decimal || 0);
-      const obj = { v: 0 };
-      ScrollTrigger.create({
-        trigger: el, start: 'top 88%', once: true,
-        onEnter: () => gsap.to(obj, {
-          v: target, duration: 1.8, ease: 'power2.out',
-          onUpdate: () => el.textContent = decimals ? obj.v.toFixed(decimals) : Math.round(obj.v).toLocaleString('en-IN')
-        })
-      });
-    });
-
-    /* ---------- Rain canvas ---------- */
-    (function () {
-      const canvas = document.getElementById('rainCanvas');
-      const ctx = canvas.getContext('2d');
-      let W, H, drops = [], ripples = [];
-      function resize() {
-        W = canvas.width = canvas.offsetWidth * devicePixelRatio;
-        H = canvas.height = canvas.offsetHeight * devicePixelRatio;
+    const loadObj = { v: 0 };
+    gsap.to(loadObj, {
+      v: 100, duration: 1.6, ease: 'power2.inOut', onUpdate: () => { document.getElementById('loadNum').textContent = Math.round(loadObj.v); document.getElementById('loadBar').style.width = loadObj.v + '%'; }, onComplete: () => {
+        const tl = gsap.timeline();
+        tl.to('#loader', { yPercent: -100, duration: .9, ease: 'power4.inOut' }).set('#loader', { display: 'none' }).to('.hero h1.mask-inner', { y: 0, duration: 1.1, ease: 'power4.out', stagger: .1 }, '-=.45').from('#heroOverline', { opacity: 0, x: -30, duration: .7 }, '-=.8').from('#heroCopy, #heroActions', { opacity: 0, y: 30, duration: .8, stagger: .12 }, '-=.6').from('#heroChips.chip', { opacity: 0, y: 20, duration: .6, stagger: .08 }, '-=.5');
       }
+    });
+
+    gsap.utils.toArray('[data-reveal]').forEach(el => { gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } }); });
+    gsap.utils.toArray('[data-speed]').forEach(el => { if (window.innerWidth > 768) { gsap.fromTo(el, { y: 60 }, { y: -60, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }); } });
+    gsap.utils.toArray('.gap-row.bar i').forEach(bar => { gsap.to(bar, { width: bar.dataset.width + '%', duration: 1.4, ease: 'power3.out', scrollTrigger: { trigger: bar, start: 'top 90%' } }); });
+    gsap.utils.toArray('[data-count]').forEach(el => {
+      const target = parseFloat(el.dataset.count); const decimals = parseInt(el.dataset.decimal || 0); const obj = { v: 0 };
+      ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => gsap.to(obj, { v: target, duration: 1.8, ease: 'power2.out', onUpdate: () => el.textContent = decimals ? obj.v.toFixed(decimals) : Math.round(obj.v).toLocaleString('en-IN') }) });
+    });
+
+    (function () {
+      const canvas = document.getElementById('rainCanvas'); const ctx = canvas.getContext('2d'); let W, H, drops = [], ripples = [];
+      function resize() { W = canvas.width = canvas.offsetWidth * devicePixelRatio; H = canvas.height = canvas.offsetHeight * devicePixelRatio; }
       resize(); addEventListener('resize', resize);
       const COUNT = Math.min(140, innerWidth / 9);
-      for (let i = 0; i < COUNT; i++) drops.push({
-        x: Math.random(), y: Math.random(), l: .02 + Math.random() * .035,
-        s: .006 + Math.random() * .008, o: .12 + Math.random() * .3
-      });
+      for (let i = 0; i < COUNT; i++) drops.push({ x: Math.random(), y: Math.random(), l: .02 + Math.random() * .035, s: .006 + Math.random() * .008, o: .12 + Math.random() * .3 });
       function tick() {
-        ctx.clearRect(0, 0, W, H);
-        ctx.lineWidth = 1.2 * devicePixelRatio;
-        drops.forEach(d => {
-          d.y += d.s;
-          if (d.y > 1) { ripples.push({ x: d.x, r: 0, o: .35 }); d.y = -d.l; d.x = Math.random(); }
-          ctx.strokeStyle = 'rgba(62,224,255,' + d.o + ')';
-          ctx.beginPath();
-          ctx.moveTo(d.x * W, d.y * H);
-          ctx.lineTo(d.x * W - d.l * W * .12, (d.y + d.l) * H);
-          ctx.stroke();
-        });
+        ctx.clearRect(0, 0, W, H); ctx.lineWidth = 1.2 * devicePixelRatio;
+        drops.forEach(d => { d.y += d.s; if (d.y > 1) { ripples.push({ x: d.x, r: 0, o: .35 }); d.y = -d.l; d.x = Math.random(); } ctx.strokeStyle = 'rgba(62,224,255,' + d.o + ')'; ctx.beginPath(); ctx.moveTo(d.x * W, d.y * H); ctx.lineTo(d.x * W - d.l * W * .12, (d.y + d.l) * H); ctx.stroke(); });
         ripples = ripples.filter(r => r.o > .01);
-        ripples.forEach(r => {
-          r.r += 1.6 * devicePixelRatio; r.o *= .94;
-          ctx.strokeStyle = 'rgba(99,242,197,' + r.o + ')';
-          ctx.beginPath();
-          ctx.ellipse(r.x * W, H - 4 * devicePixelRatio, r.r, r.r * .28, 0, 0, Math.PI * 2);
-          ctx.stroke();
-        });
+        ripples.forEach(r => { r.r += 1.6 * devicePixelRatio; r.o *= .94; ctx.strokeStyle = 'rgba(99,242,197,' + r.o + ')'; ctx.beginPath(); ctx.ellipse(r.x * W, H - 4 * devicePixelRatio, r.r, r.r * .28, 0, 0, Math.PI * 2); ctx.stroke(); });
         requestAnimationFrame(tick);
       }
       tick();
-      gsap.to(canvas, {
-        yPercent: 18, ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
-      });
-    })();
-
-    /* ---------- Cursor ---------- */
-    (function () {
-      const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-      let mx = -100, my = -100, rx = -100, ry = -100;
-      addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-      (function loop() {
-        rx += (mx - rx) * .16; ry += (my - ry) * .16;
-        dot.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px)';
-        ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px)';
-        requestAnimationFrame(loop);
-      })();
-      document.querySelectorAll('a, button, select, input').forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
-      });
-    })();
-
-    /* ---------- Code tabs ---------- */
-    const CODE = {
-      python: {
-        file: 'filter.py', run: 'python filter.py', name: 'Python', code:
-          `class Water:
-    def __init__(self, ntu, tds):
-        self.ntu = ntu   # turbidity (NTU)
-        self.tds = tds   # dissolved solids (mg/L)
-
-LAYERS = {                  # medium: (ntu, tds) kept after pass
-    "pebbles": (0.70, 0.95),  # strains leaves & grit
-    "sand":    (0.15, 0.80),  # depth-filtration of silt
-    "cotton":  (0.05, 0.70),  # final polish
-}
-
-def purify(w):
-    for t_keep, s_keep in LAYERS.values():
-        w.ntu *= t_keep
-        w.tds *= s_keep
-    return 100 - w.ntu        # clarity index
-
-rain = Water(ntu=85, tds=420)
-print(f"Purity: {purify(rain):.1f}%")   # -> 99.6%`,
-        notes: ['LAYERS dict maps each medium to its retention factors — O(1) lookup, zero branching.', 'Tuple unpacking (t_keep, s_keep) keeps the loop body purely declarative.', 'f-string rounds to one decimal — output reads Purity: 99.6%.', 'Idiomatic, readable reference implementation: physics first, syntax invisible.']
-      },
-      java: {
-        file: 'AquaFilter.java', run: 'java AquaFilter.java', name: 'Java', code:
-          `public class AquaFilter {
-    record Water(double ntu, double tds) {}
-
-    static final double[][] LAYERS = {
-        {0.70, 0.95},   // pebbles
-        {0.15, 0.80},   // sand
-        {0.05, 0.70}    // cotton
-    };
-
-    static double clarity(Water w) {
-        double ntu = w.ntu();
-        for (double[] layer : LAYERS)
-            ntu *= layer[0];
-        return 100 - ntu;
-    }
-
-    public static void main(String[] args) {
-        System.out.printf("Purity: %.1f%%%n",
-            clarity(new Water(85, 420)));   // -> 99.6%
-    }
-}`,
-        notes: ['record declares an immutable Water type in a single line (Java 16+).', 'static final array = compile-time constant table of layer factors.', 'Enhanced for-loop walks the layers with no index arithmetic.', 'printf %.1f formats the clarity index — enterprise-grade verbosity, tamed.']
-      },
-      cpp: {
-        file: 'filter.cpp', run: './filter', name: 'C++', code:
-          `#include <iostream>
-#include <vector>
-#include <utility>
-
-struct Water { double ntu, tds; };
-
-int main() {
-    std::vector<std::pair<double, double>> layers{
-        {0.70, 0.95},   // pebbles
-        {0.15, 0.80},   // sand
-        {0.05, 0.70}    // cotton
-    };
-
-    Water rain{85.0, 420.0};
-    for (const auto& [ntu, tds] : layers) {
-        rain.ntu *= ntu;
-        rain.tds *= tds;
-    }
-
-    std::cout << "Purity: "
-              << 100.0 - rain.ntu << "%\\n";   // -> 99.6%
-}`,
-        notes: ['std::pair table models each layer as (ntu, tds) retention factors.', 'Structured bindings auto& [ntu, tds] (C++17) unpack with zero copies.', 'No dynamic allocation beyond one vector — cache-friendly, embedded-ready.', 'The same code compiles for an Arduino that drives a real valve.']
-      },
-      csharp: {
-        file: 'Filter.cs', run: 'dotnet run', name: 'C#', code:
-          `var layers = new (double ntu, double tds)[] {
-    (0.70, 0.95),   // pebbles
-    (0.15, 0.80),   // sand
-    (0.05, 0.70)    // cotton
-};
-
-var rain = new { Ntu = 85.0, Tds = 420.0 };
-double ntu = rain.Ntu;
-
-foreach (var layer in layers)
-    ntu *= layer.ntu;
-
-System.Console.WriteLine(
-    $"Purity: {100 - ntu:F1}%");   // -> 99.6%`,
-        notes: ['ValueTuple array keeps the layer table strongly typed and named.', 'Anonymous object models incoming rainwater without a class file.', 'Top-level statements strip boilerplate down to the physics.', 'String interpolation with :F1 — the .NET formatter does the rounding.']
-      },
-      c: {
-        file: 'filter.c', run: './filter', name: 'C', code:
-          `#include <stdio.h>
-
-typedef struct { double ntu, tds; } Water;
-
-int main(void) {
-    const double layers[3][2] = {
-        {0.70, 0.95},   /* pebbles */
-        {0.15, 0.80},   /* sand    */
-        {0.05, 0.70}    /* cotton  */
-    };
-
-    Water rain = {85.0, 420.0};
-    for (int i = 0; i < 3; i++) {
-        rain.ntu *= layers[i][0];
-        rain.tds *= layers[i][1];
-    }
-
-    printf("Purity: %.1f%%\\n", 100.0 - rain.ntu);   /* -> 99.6% */
-    return 0;
-}`,
-        notes: ['typedef struct packs turbidity + TDS into one 16-byte value.', 'The const table lives in read-only memory — 48 bytes total footprint.', 'Index loop mirrors exactly how firmware filters live sensor data.', 'Runs on any microcontroller: this is the version we flash to hardware.']
-      },
-      rust: {
-        file: 'filter.rs', run: 'cargo run', name: 'Rust', code:
-          `struct Water { ntu: f64, tds: f64 }
-
-const LAYERS: [(f64, f64); 3] = [
-    (0.70, 0.95),   // pebbles
-    (0.15, 0.80),   // sand
-    (0.05, 0.70),   // cotton
-];
-
-fn purify(mut w: Water) -> f64 {
-    for (ntu, tds) in LAYERS {
-        w.ntu *= ntu;
-        w.tds *= tds;
-    }
-    100.0 - w.ntu
-}
-
-fn main() {
-    let rain = Water { ntu: 85.0, tds: 420.0 };
-    println!("Purity: {:.1}%", purify(rain));   // -> 99.6%
-}`,
-        notes: ['const array is baked into the binary — zero runtime initialisation.', 'mut binding makes state change explicit; everything else is immutable.', 'Iterating LAYERS by value compiles to the same loop as C — zero cost.', 'Ownership guarantees no aliasing bugs: memory safety without a GC.']
-      },
-      go: {
-        file: 'filter.go', run: 'go run filter.go', name: 'Go', code:
-          `package main
-
-import "fmt"
-
-type Water struct{ ntu, tds float64 }
-
-var layers = [][2]float64{
-    {0.70, 0.95},   // pebbles
-    {0.15, 0.80},   // sand
-    {0.05, 0.70},   // cotton
-}
-
-func purify(w Water) float64 {
-    for _, l := range layers {
-        w.ntu *= l[0]
-        w.tds *= l[1]
-    }
-    return 100 - w.ntu
-}
-
-func main() {
-    fmt.Printf("Purity: %.1f%%\\n",
-        purify(Water{85, 420}))   // -> 99.6%
-}`,
-        notes: ['Slice literal [][2]float64 is a compact, idiomatic layer table.', 'range destructures the index away — the loop reads like the physics.', 'Pass-by-value keeps purify() side-effect free and trivially testable.', 'fmt.Printf verbs mirror C — this service is production-deployable as-is.']
-      },
-      kotlin: {
-        file: 'filter.kt', run: 'kotlinc filter.kt', name: 'Kotlin', code:
-          `data class Water(var ntu: Double, var tds: Double)
-
-val layers = listOf(
-    0.70 to 0.95,   // pebbles
-    0.15 to 0.80,   // sand
-    0.05 to 0.70    // cotton
-)
-
-fun purify(w: Water): Double {
-    layers.forEach { (ntu, tds) ->
-        w.ntu *= ntu
-        w.tds *= tds
-    }
-    return 100 - w.ntu
-}
-
-fun main() {
-    val rain = Water(85.0, 420.0)
-    println("Purity: %.1f%%".format(purify(rain)))   // -> 99.6%
-}`,
-        notes: ['data class auto-generates equals/toString — unit tests come free.', 'to builds Pair values, so the table reads like the physics it models.', 'Destructuring (ntu, tds) inside the forEach lambda — zero ceremony.', 'This exact file ships in our Android companion app, unmodified.']
+      if (window.innerWidth > 768) {
+        gsap.to(canvas, { yPercent: 18, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
       }
-    };
+    })();
 
+    (function () {
+      const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing'); let mx = -100, my = -100, rx = -100, ry = -100;
+      addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      (function loop() { rx += (mx - rx) * .16; ry += (my - ry) * .16; dot.style.transform = 'translate(' + (mx - 3) + 'px,' + (my - 3) + 'px)'; ring.style.transform = 'translate(' + (rx - 17) + 'px,' + (ry - 17) + 'px)'; requestAnimationFrame(loop); })();
+      document.querySelectorAll('a, button, select, input').forEach(el => { el.addEventListener('mouseenter', () => ring.classList.add('is-hover')); el.addEventListener('mouseleave', () => ring.classList.remove('is-hover')); });
+    })();
+
+    const CODE = {
+      python: { file: 'filter.py', run: 'python filter.py', name: 'Python', code: `class Water:\n def __init__(self, ntu, tds):\n self.ntu = ntu # turbidity (NTU)\n self.tds = tds # dissolved solids (mg/L)\n\nLAYERS = { # medium: (ntu, tds) kept after pass\n "pebbles": (0.70, 0.95), # strains leaves & grit\n "sand": (0.15, 0.80), # depth-filtration of silt\n "cotton": (0.05, 0.70), # final polish\n}\n\ndef purify(w):\n for t_keep, s_keep in LAYERS.values():\n w.ntu *= t_keep\n w.tds *= s_keep\n return 100 - w.ntu # clarity index\n\nrain = Water(ntu=85, tds=420)\nprint(f"Purity: {purify(rain):.1f}%") # -> 99.6%`, notes: ['LAYERS dict maps each medium to its retention factors — O(1) lookup, zero branching.', 'Tuple unpacking (t_keep, s_keep) keeps the loop body purely declarative.', 'f-string rounds to one decimal — output reads Purity: 99.6%.', 'Idiomatic, readable reference implementation: physics first, syntax invisible.'] },
+      java: { file: 'AquaFilter.java', run: 'java AquaFilter.java', name: 'Java', code: `public class AquaFilter {\n record Water(double ntu, double tds) {}\n\n static final double[][] LAYERS = {\n {0.70, 0.95}, // pebbles\n {0.15, 0.80}, // sand\n {0.05, 0.70} // cotton\n };\n\n static double clarity(Water w) {\n double ntu = w.ntu();\n for (double[] layer : LAYERS)\n ntu *= layer[0];\n return 100 - ntu;\n }\n\n public static void main(String[] args) {\n System.out.printf("Purity: %.1f%%%n",\n clarity(new Water(85, 420))); // -> 99.6%\n }\n}`, notes: ['record declares an immutable Water type in a single line (Java 16+).', 'static final array = compile-time constant table of layer factors.', 'Enhanced for-loop walks the layers with no index arithmetic.', 'printf %.1f formats the clarity index — enterprise-grade verbosity, tamed.'] },
+      cpp: { file: 'filter.cpp', run: './filter', name: 'C++', code: `#include <iostream>\n#include <vector>\n#include <utility>\n\nstruct Water { double ntu, tds; };\n\nint main() {\n std::vector<std::pair<double, double>> layers{\n {0.70, 0.95}, // pebbles\n {0.15, 0.80}, // sand\n {0.05, 0.70} // cotton\n };\n\n Water rain{85.0, 420.0};\n for (const auto& [ntu, tds] : layers) {\n rain.ntu *= ntu;\n rain.tds *= tds;\n }\n\n std::cout << "Purity: "\n << 100.0 - rain.ntu << "%\\n"; // -> 99.6%\n}`, notes: ['std::pair table models each layer as (ntu, tds) retention factors.', 'Structured bindings auto& [ntu, tds] (C++17) unpack with zero copies.', 'No dynamic allocation beyond one vector — cache-friendly, embedded-ready.', 'The same code compiles for an Arduino that drives a real valve.'] },
+      csharp: { file: 'Filter.cs', run: 'dotnet run', name: 'C#', code: `var layers = new (double ntu, double tds)[] {\n (0.70, 0.95), // pebbles\n (0.15, 0.80), // sand\n (0.05, 0.70) // cotton\n};\n\nvar rain = new { Ntu = 85.0, Tds = 420.0 };\ndouble ntu = rain.Ntu;\n\nforeach (var layer in layers)\n ntu *= layer.ntu;\n\nSystem.Console.WriteLine(\n $"Purity: {100 - ntu:F1}%"); // -> 99.6%`, notes: ['ValueTuple array keeps the layer table strongly typed and named.', 'Anonymous object models incoming rainwater without a class file.', 'Top-level statements strip boilerplate down to the physics.', 'String interpolation with :F1 — the.NET formatter does the rounding.'] },
+      c: { file: 'filter.c', run: './filter', name: 'C', code: `#include <stdio.h>\n\ntypedef struct { double ntu, tds; } Water;\n\nint main(void) {\n const double layers[3][2] = {\n {0.70, 0.95}, /* pebbles */\n {0.15, 0.80}, /* sand */\n {0.05, 0.70} /* cotton */\n };\n\n Water rain = {85.0, 420.0};\n for (int i = 0; i < 3; i++) {\n rain.ntu *= layers[i][0];\n rain.tds *= layers[i][1];\n }\n\n printf("Purity: %.1f%%\\n", 100.0 - rain.ntu); /* -> 99.6% */\n return 0;\n}`, notes: ['typedef struct packs turbidity + TDS into one 16-byte value.', 'The const table lives in read-only memory — 48 bytes total footprint.', 'Index loop mirrors exactly how firmware filters live sensor data.', 'Runs on any microcontroller: this is the version we flash to hardware.'] },
+      rust: { file: 'filter.rs', run: 'cargo run', name: 'Rust', code: `struct Water { ntu: f64, tds: f64 }\n\nconst LAYERS: [(f64, f64); 3] = [\n (0.70, 0.95), // pebbles\n (0.15, 0.80), // sand\n (0.05, 0.70), // cotton\n];\n\nfn purify(mut w: Water) -> f64 {\n for (ntu, tds) in LAYERS {\n w.ntu *= ntu;\n w.tds *= tds;\n }\n 100.0 - w.ntu\n}\n\nfn main() {\n let rain = Water { ntu: 85.0, tds: 420.0 };\n println!("Purity: {:.1}%", purify(rain)); // -> 99.6%\n}`, notes: ['const array is baked into the binary — zero runtime initialisation.', 'mut binding makes state change explicit; everything else is immutable.', 'Iterating LAYERS by value compiles to the same loop as C — zero cost.', 'Ownership guarantees no aliasing bugs: memory safety without a GC.'] },
+      go: { file: 'filter.go', run: 'go run filter.go', name: 'Go', code: `package main\n\nimport "fmt"\n\ntype Water struct{ ntu, tds float64 }\n\nvar layers = [][2]float64{\n {0.70, 0.95}, // pebbles\n {0.15, 0.80}, // sand\n {0.05, 0.70}, // cotton\n}\n\nfunc purify(w Water) float64 {\n for _, l := range layers {\n w.ntu *= l[0]\n w.tds *= l[1]\n }\n return 100 - w.ntu\n}\n\nfunc main() {\n fmt.Printf("Purity: %.1f%%\\n",\n purify(Water{85, 420})) // -> 99.6%\n}`, notes: ['Slice literal [][2]float64 is a compact, idiomatic layer table.', 'range destructures the index away — the loop reads like the physics.', 'Pass-by-value keeps purify() side-effect free and trivially testable.', 'fmt.Printf verbs mirror C — this service is production-deployable as-is.'] },
+      kotlin: { file: 'filter.kt', run: 'kotlinc filter.kt', name: 'Kotlin', code: `data class Water(var ntu: Double, var tds: Double)\n\nval layers = listOf(\n 0.70 to 0.95, // pebbles\n 0.15 to 0.80, // sand\n 0.05 to 0.70 // cotton\n)\n\nfun purify(w: Water): Double {\n layers.forEach { (ntu, tds) ->\n w.ntu *= ntu\n w.tds *= tds\n }\n return 100 - w.ntu\n}\n\nfun main() {\n val rain = Water(85.0, 420.0)\n println("Purity: %.1f%%".format(purify(rain))) // -> 99.6%\n}`, notes: ['data class auto-generates equals/toString — unit tests come free.', 'to builds Pair values, so the table reads like the physics it models.', 'Destructuring (ntu, tds) inside the forEach lambda — zero ceremony.', 'This exact file ships in our Android companion app, unmodified.'] }
+    };
     const KEYWORDS = /\b(class|def|fn|func|struct|impl|for|in|return|if|else|public|private|static|void|int|float|double|let|mut|const|var|val|fun|package|import|use|pub|new|this|self|foreach|string|String|auto|type|typedef|include|record|final|extends|printf|println|print|main|sizeof|match|while|do|switch|case|break|continue|ref|out|is|as|null|true|false|where|data|to)\b/g;
     function escapeHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') }
     function highlight(code) {
       let h = escapeHtml(code);
       h = h.replace(/(\/\*[\s\S]*?\*\/|\/\/[^\n]*|#[^\n]*)/g, m => 'C' + btoa(unescape(encodeURIComponent(m))) + '');
-      const stash = [];
-      h = h.replace(/C([^\u0002]*)\u0002/g, (m, b) => { stash.push(b); return '\u0001C' + (stash.length - 1) + '\u0002'; });
+      const stash = []; h = h.replace(/C([^\u0002]*)\u0002/g, (m, b) => { stash.push(b); return '\u0001C' + (stash.length - 1) + '\u0002'; });
       h = h.replace(/("[^"\n]*"|'[^'\n]*'|`[^`\n]*`|f"[^"\n]*")/g, '<span class="tok-s">$1</span>');
       h = h.replace(KEYWORDS, '<span class="tok-k">$1</span>');
       h = h.replace(/\b(\d+\.?\d*)\b/g, '<span class="tok-n">$1</span>');
@@ -3025,12 +3059,9 @@ fun main() {
     const langColors = { python: '#ffd43b', java: '#f18817', cpp: '#5c9dff', csharp: '#a47cff', c: '#9fb3c8', rust: '#ff6b4a', go: '#3ee0ff', kotlin: '#c86bff' };
     const tabsWrap = document.getElementById('langTabs');
     langOrder.forEach(key => {
-      const b = document.createElement('button');
-      b.className = 'lang-tab'; b.dataset.lang = key; b.setAttribute('role', 'tab');
-      b.dataset.testid = 'code-tab-' + key;
+      const b = document.createElement('button'); b.className = 'lang-tab'; b.dataset.lang = key; b.setAttribute('role', 'tab'); b.dataset.testid = 'code-tab-' + key;
       b.innerHTML = '<span class="dotty" style="color:' + langColors[key] + '"></span>' + CODE[key].name;
-      b.addEventListener('click', () => setLang(key));
-      tabsWrap.appendChild(b);
+      b.addEventListener('click', () => setLang(key)); tabsWrap.appendChild(b);
     });
     function setLang(key) {
       const d = CODE[key];
@@ -3039,107 +3070,120 @@ fun main() {
       document.getElementById('codeRunLine').textContent = d.run;
       document.getElementById('notesLang').textContent = d.name;
       const lines = d.code.split('\n');
-      document.getElementById('codeBody').innerHTML = lines.map((l, i) =>
-        '<div class="code-line"><span class="ln">' + (i + 1) + '</span><span class="lc">' + (highlight(l) || '&nbsp;') + '</span></div>').join('');
+      document.getElementById('codeBody').innerHTML = lines.map((l, i) => '<div class="code-line"><span class="ln">' + (i + 1) + '</span><span class="lc">' + (highlight(l) || '&nbsp;') + '</span></div>').join('');
       document.getElementById('notesList').innerHTML = d.notes.map(n => '<li>' + n + '</li>').join('');
-      gsap.fromTo('#codeBody .code-line', { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: .35, stagger: .018, ease: 'power2.out' });
+      gsap.fromTo('#codeBody.code-line', { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: .35, stagger: .018, ease: 'power2.out' });
     }
     setLang('python');
 
-    /* ---------- Filter: layer inspector ---------- */
     const LAYER_INFO = {
-      pebbles: {
-        tag: 'Layer 01 / 03', title: 'Pebbles & Gravel',
-        desc: 'The first line of defence. Washed river pebbles form a coarse bed that physically blocks leaves, twigs, insects and grit larger than ~2 mm. Because pebbles don\u2019t compact, water keeps flowing even during peak monsoon downpours.',
-        size: '10–20 mm', removes: 'Debris > 2 mm', keep: '70%', principle: 'Mechanical straining', clean: 'Rinse monthly'
-      },
-      sand: {
-        tag: 'Layer 02 / 03', title: 'River Sand',
-        desc: 'The workhorse. Water percolates through a 15 cm bed of graded sand where silt and sediment are trapped deep between grains — not just on the surface. This depth filtration is what collapses turbidity from 59 to under 9 NTU.',
-        size: '0.2–2 mm', removes: 'Silt & sediment', keep: '15%', principle: 'Depth filtration + adsorption', clean: 'Replace yearly'
-      },
-      cotton: {
-        tag: 'Layer 03 / 03', title: 'Cotton & Mesh',
-        desc: 'The final polish. Dense cotton batting over fine stainless mesh catches the last ultra-fine particles, taking turbidity below 0.5 NTU — clear enough to read through. A washable layer that costs under ₹50 to replace.',
-        size: '< 0.1 mm', removes: 'Ultra-fine particulates', keep: '5%', principle: 'Surface screening', clean: 'Wash fortnightly'
-      }
+      pebbles: { tag: 'Layer 01 / 03', title: 'Pebbles & Gravel', desc: 'The first line of defence. Washed river pebbles form a coarse bed that physically blocks leaves, twigs, insects and grit larger than ~2 mm. Because pebbles don’t compact, water keeps flowing even during peak monsoon downpours.', size: '10–20 mm', removes: 'Debris > 2 mm', keep: '70%', principle: 'Mechanical straining', clean: 'Rinse monthly' },
+      sand: { tag: 'Layer 02 / 03', title: 'River Sand', desc: 'The workhorse. Water percolates through a 15 cm bed of graded sand where silt and sediment are trapped deep between grains — not just on the surface. This depth filtration is what collapses turbidity from 59 to under 9 NTU.', size: '0.2–2 mm', removes: 'Silt & sediment', keep: '15%', principle: 'Depth filtration + adsorption', clean: 'Replace yearly' },
+      cotton: { tag: 'Layer 03 / 03', title: 'Cotton & Mesh', desc: 'The final polish. Dense cotton batting over fine stainless mesh catches the last ultra-fine particles, taking turbidity below 0.5 NTU — clear enough to read through. A washable layer that costs under ₹50 to replace.', size: '< 0.1 mm', removes: 'Ultra-fine particulates', keep: '5%', principle: 'Surface screening', clean: 'Wash fortnightly' }
     };
     document.querySelectorAll('.f-layer').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.f-layer').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
+        document.querySelectorAll('.f-layer').forEach(b => b.classList.remove('selected')); btn.classList.add('selected');
         const d = LAYER_INFO[btn.dataset.layer];
-        document.getElementById('fdTag').textContent = d.tag;
-        document.getElementById('fdTitle').textContent = d.title;
-        document.getElementById('fdDesc').textContent = d.desc;
-        document.getElementById('fdSize').textContent = d.size;
-        document.getElementById('fdRemoves').textContent = d.removes;
-        document.getElementById('fdKeep').textContent = d.keep;
-        document.getElementById('fdPrinciple').textContent = d.principle;
-        document.getElementById('fdClean').textContent = d.clean;
+        document.getElementById('fdTag').textContent = d.tag; document.getElementById('fdTitle').textContent = d.title; document.getElementById('fdDesc').textContent = d.desc;
+        document.getElementById('fdSize').textContent = d.size; document.getElementById('fdRemoves').textContent = d.removes; document.getElementById('fdKeep').textContent = d.keep;
+        document.getElementById('fdPrinciple').textContent = d.principle; document.getElementById('fdClean').textContent = d.clean;
         gsap.fromTo('.filter-detail', { opacity: .4, y: 14 }, { opacity: 1, y: 0, duration: .5, ease: 'power2.out' });
       });
     });
-
-    /* cylinder tilt */
     const cylinder = document.getElementById('cylinder');
-    cylinder.addEventListener('mousemove', e => {
-      const r = cylinder.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - .5;
-      gsap.to(cylinder, { rotateY: x * 14, rotateX: 6 - x * 4, duration: .5 });
-    });
-    cylinder.addEventListener('mouseleave', () => gsap.to(cylinder, { rotateY: 0, rotateX: 6, duration: .8, ease: 'elastic.out(1,.5)' }));
-
-    /* ---------- Filter simulation ---------- */
+    if (window.matchMedia('(hover:hover)').matches) {
+      cylinder.addEventListener('mousemove', e => { const r = cylinder.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5; gsap.to(cylinder, { rotateY: x * 14, rotateX: 6 - x * 4, duration: .5 }); });
+      cylinder.addEventListener('mouseleave', () => gsap.to(cylinder, { rotateY: 0, rotateX: 6, duration: .8, ease: 'elastic.out(1,.5)' }));
+    }
     let simming = false;
     document.getElementById('simBtn').addEventListener('click', () => {
-      if (simming) return; simming = true;
-      document.getElementById('simResult').classList.remove('show');
-      const drop = document.getElementById('flowDrop');
-      const h = cylinder.offsetHeight;
-      const meters = { ntu: 85, tds: 420, purity: 0 };
+      if (simming) return; simming = true; document.getElementById('simResult').classList.remove('show');
+      const drop = document.getElementById('flowDrop'); const h = cylinder.offsetHeight; const meters = { ntu: 85, tds: 420, purity: 0 };
       const tl = gsap.timeline({ onComplete: () => { simming = false; document.getElementById('simResult').classList.add('show'); } });
-      tl.set(drop, { top: -16, opacity: 1 })
-        .to(drop, { top: h + 20, duration: 2.6, ease: 'power1.in' }, 0)
-        .to(meters, {
-          ntu: 0.4, tds: 223, purity: 99.6, duration: 2.8, ease: 'power2.inOut',
-          onUpdate: () => {
-            document.getElementById('ntuVal').textContent = meters.ntu.toFixed(1);
-            document.getElementById('tdsVal').textContent = Math.round(meters.tds);
-            document.getElementById('purityVal').textContent = meters.purity.toFixed(1);
-            document.getElementById('ntuBar').style.width = (meters.ntu / 85 * 100) + '%';
-            document.getElementById('tdsBar').style.width = (meters.tds / 500 * 100) + '%';
-            document.getElementById('purityBar').style.width = meters.purity + '%';
-          }
-        }, 0)
-        .to(drop, { opacity: 0, duration: .3 }, 2.5);
+      tl.set(drop, { top: -16, opacity: 1 }).to(drop, { top: h + 20, duration: 2.6, ease: 'power1.in' }, 0).to(meters, {
+        ntu: 0.4, tds: 223, purity: 99.6, duration: 2.8, ease: 'power2.inOut', onUpdate: () => {
+          document.getElementById('ntuVal').textContent = meters.ntu.toFixed(1); document.getElementById('tdsVal').textContent = Math.round(meters.tds); document.getElementById('purityVal').textContent = meters.purity.toFixed(1);
+          document.getElementById('ntuBar').style.width = (meters.ntu / 85 * 100) + '%'; document.getElementById('tdsBar').style.width = (meters.tds / 500 * 100) + '%'; document.getElementById('purityBar').style.width = meters.purity + '%';
+        }
+      }, 0).to(drop, { opacity: 0, duration: .3 }, 2.5);
     });
 
-    /* ---------- Calculator ---------- */
-    const calcCity = document.getElementById('calcCity'),
-      calcArea = document.getElementById('calcArea'),
-      calcEff = document.getElementById('calcEff');
+    const calcCity = document.getElementById('calcCity'), calcArea = document.getElementById('calcArea'), calcEff = document.getElementById('calcEff');
     function calc() {
       const rain = +calcCity.value, area = +calcArea.value, eff = +calcEff.value / 100;
-      const litres = Math.round(rain * area * eff);
-      const savings = Math.round(litres * 0.4);
-      const setup = Math.round(15000 * area / 100);
+      const litres = Math.round(rain * area * eff); const savings = Math.round(litres * 0.4); const setup = Math.round(15000 * area / 100);
       const payback = savings > 0 ? Math.max(1, Math.round(setup / savings * 12)) : 0;
-      document.getElementById('cityRainOut').textContent = rain.toLocaleString('en-IN') + ' mm';
-      document.getElementById('areaOut').textContent = area + ' m²';
-      document.getElementById('effOut').textContent = calcEff.value + '%';
-      document.getElementById('calcLitres').textContent = litres.toLocaleString('en-IN');
-      document.getElementById('calcDays').textContent = Math.round(litres / 16).toLocaleString('en-IN');
-      document.getElementById('calcMoney').textContent = '₹' + savings.toLocaleString('en-IN');
-      document.getElementById('calcPayback').textContent = payback + ' mo';
+      document.getElementById('cityRainOut').textContent = rain.toLocaleString('en-IN') + ' mm'; document.getElementById('areaOut').textContent = area + ' m²'; document.getElementById('effOut').textContent = calcEff.value + '%';
+      document.getElementById('calcLitres').textContent = litres.toLocaleString('en-IN'); document.getElementById('calcDays').textContent = Math.round(litres / 16).toLocaleString('en-IN');
+      document.getElementById('calcMoney').textContent = '₹' + savings.toLocaleString('en-IN'); document.getElementById('calcPayback').textContent = payback + ' mo';
     }
-    [calcCity, calcArea, calcEff].forEach(el => el.addEventListener('input', calc));
-    calc();
-
-    /* ---------- Console signature ---------- */
+    [calcCity, calcArea, calcEff].forEach(el => el.addEventListener('input', calc)); calc();
     console.log('%cAQUAHARVEST', 'font-size:28px;font-weight:900;color:#3ee0ff;font-family:serif');
-    console.log('%cRain, captured. Water, engineered.', 'font-size:13px;color:#63f2c5');
-    console.log('%cCreated by Rishabh Raj Singh & Dev Pratap Singh · © 2026', 'font-size:11px;color:#8fb0c4');
+
+    (function () {
+      const wrapper = document.getElementById('codeWrapper');
+      const track = document.getElementById('scrollTrack');
+      const thumb = document.getElementById('scrollThumb');
+
+      function updateThumb() {
+        if (!wrapper) return;
+        const scrollWidth = wrapper.scrollWidth - wrapper.clientWidth;
+        const trackWidth = track.clientWidth - 24; // padding
+        if (scrollWidth <= 0) { thumb.style.opacity = '0'; track.style.display = 'none'; return; }
+        track.style.display = 'flex';
+        thumb.style.opacity = '1';
+        const thumbWidth = Math.max(40, (wrapper.clientWidth / wrapper.scrollWidth) * trackWidth);
+        thumb.style.width = thumbWidth + 'px';
+        const scrollPercent = wrapper.scrollLeft / scrollWidth;
+        const thumbPos = scrollPercent * (trackWidth - thumbWidth);
+        thumb.style.transform = `translateX(${thumbPos}px)`;
+      }
+
+      wrapper.addEventListener('scroll', updateThumb);
+      window.addEventListener('resize', updateThumb);
+
+      // Drag logic
+      let isDragging = false, startX, startLeft;
+      thumb.addEventListener('pointerdown', e => {
+        isDragging = true;
+        thumb.classList.add('dragging');
+        thumb.setPointerCapture(e.pointerId);
+        startX = e.clientX;
+        startLeft = parseFloat(thumb.style.transform.replace(/.*\(|\).*/g, '')) || 0;
+      });
+      thumb.addEventListener('pointermove', e => {
+        if (!isDragging) return;
+        const trackWidth = track.clientWidth - 24;
+        const thumbWidth = thumb.offsetWidth;
+        const delta = e.clientX - startX;
+        let newLeft = Math.min(Math.max(0, startLeft + delta), trackWidth - thumbWidth);
+        thumb.style.transform = `translateX(${newLeft}px)`;
+        const scrollPercent = newLeft / (trackWidth - thumbWidth);
+        wrapper.scrollLeft = scrollPercent * (wrapper.scrollWidth - wrapper.clientWidth);
+      });
+      thumb.addEventListener('pointerup', () => {
+        isDragging = false;
+        thumb.classList.remove('dragging');
+      });
+      track.addEventListener('click', e => {
+        if (e.target === thumb || thumb.contains(e.target)) return;
+        const rect = track.getBoundingClientRect();
+        const clickX = e.clientX - rect.left - 12;
+        const trackWidth = track.clientWidth - 24;
+        const thumbWidth = thumb.offsetWidth;
+        const newLeft = Math.min(Math.max(0, clickX - thumbWidth / 2), trackWidth - thumbWidth);
+        thumb.style.transform = `translateX(${newLeft}px)`;
+        wrapper.scrollTo({ left: (newLeft / (trackWidth - thumbWidth)) * (wrapper.scrollWidth - wrapper.clientWidth), behavior: 'smooth' });
+      });
+
+      // Hook into your existing setLang to recalc
+      const originalSetLang = window.setLang;
+      if (originalSetLang) {
+        window.setLang = function (k) { originalSetLang(k); setTimeout(updateThumb, 100); }
+      }
+      setTimeout(updateThumb, 300);
+    })();
   </script>
 </body>
 
